@@ -5,13 +5,22 @@ class Pemeriksa extends CI_Controller
 {
     public function index()
     {
-        $data['title'] = "Dashboard";
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $role_id = $this->session->userdata('role_id');
+        $logged = $this->session->userdata('logged');
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('pemeriksa/index', $data);
-        $this->load->view('templates/footer');
+        // cegah role lain masuk dan yang sudah login
+        if($role_id == 2 && $logged){
+            $data['title'] = "Dashboard";
+            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+    
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('pemeriksa/index', $data);
+            $this->load->view('templates/footer');
+        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Anda tidak memiliki akses</div>');
+            redirect('auth');
+        }
     }
 }

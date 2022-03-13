@@ -38,6 +38,7 @@ class Auth extends CI_Controller {
                     'role_id' => $user['role_id']
                 ];
                 $this->session->set_userdata($data);
+                $this->session->set_userdata('logged',true);
 
                 // cek role
                 if($user['role_id'] == 1){
