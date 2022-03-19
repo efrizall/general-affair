@@ -37,6 +37,7 @@ class Auth extends CI_Controller {
                     'nik' => $user['nik'],
                     'role_id' => $user['role_id']
                 ];
+                
                 $this->session->set_userdata($data);
                 $this->session->set_userdata('logged',true);
 

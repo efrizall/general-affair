@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Dashboard Pemeriksa</h1>
+    <h1 class="h3 mb-4 text-gray-800">Dashboard Staff</h1>
 
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
