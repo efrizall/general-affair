@@ -5,11 +5,13 @@
         <div class="col-sm-4">
         </div>
         <div class="col my-auto">
-            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/pMaintenance') ?>">
+            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/mTambah') ?>">
             <i class="fas fa-fw fa-plus"></i> Tambah Permintaan
             </a>                        
         </div>
     </div>
+
+    <?= $this->session->flashdata('message'); ?>
 
     <!-- DataTales Example -->
     <div class="card mb-4">
@@ -33,10 +35,11 @@
                     <tbody>
                         <?php
                         foreach($data as $row){
+                            $tanggal = date_create($row['tanggal']);
                         ?>
                         <tr>
                             <td><?= $row['tanggal'] ?></td>
-                            <td><?= $row['nomor'] ?></td>
+                            <td><?= $row['id'] ?>/FLP/RNI/<?= date_format($tanggal, "m/Y") ?></td>
                             <td><?= $row['nama'] ?></td>
                             <td><?= $row['permintaan'] ?></td>
                             <td><?= $row['status'] ?></td>

@@ -5,7 +5,6 @@ class Auth extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
     }
 
     public function index(){
@@ -33,6 +32,7 @@ class Auth extends CI_Controller {
             if($password == $user['password']){
                 // Mengirim data menggunakan session
                 $data = [
+                    'id' => $user['id'],
                     'nama' => $user['name'],
                     'nik' => $user['nik'],
                     'role_id' => $user['role_id']

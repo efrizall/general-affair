@@ -55,6 +55,23 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
+<!-- Swal -->
+<script src="<?= base_url('assets/swal-js/'); ?>sweetalert2.all.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        <?php if($this->session->flashdata('berhasil')){ ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '<?= $this->session->flashdata('berhasil') ?>'
+            });
+        <?php
+        }
+        ?>
+    })
+</script>
+
 </body>
 
 </html>
