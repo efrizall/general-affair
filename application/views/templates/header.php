@@ -21,6 +21,9 @@
     <!-- Custom styles for this page -->
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- Custom style for Rekap -->
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/mystyle.css">
+
 </head>
 
 <body id="page-top">
