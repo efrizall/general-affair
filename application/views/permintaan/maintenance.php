@@ -11,6 +11,7 @@
         </div>
     </div>
 
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
     <?= $this->session->flashdata('message'); ?>
 
     <!-- DataTales Example -->
@@ -39,7 +40,7 @@
                         ?>
                         <tr>
                             <td><?= $row['tanggal'] ?></td>
-                            <td><?= $row['id'] ?>/FLP/RNI/<?= date_format($tanggal, "m/Y") ?></td>
+                            <td><?= $row['id'] ?>/FPL/RNI/<?= date_format($tanggal, "m/Y") ?></td>
                             <td><?= $row['nama'] ?></td>
                             <td><?= $row['permintaan'] ?></td>
                             <td><?= $row['status'] ?></td>
@@ -51,12 +52,12 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="aksi">
                                         <li><a class="dropdown-item" href="<?= base_url('admin/mDetail/').$row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-cog mr-2"></i> Proses</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                        <li><a class="dropdown-item text-success" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
-                                        <li><a class="dropdown-item text-danger" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                        <li><a class="dropdown-item" href="" id="hapus"><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
+                                        <li><button type="button" class="dropdown-item" data-toggle="modal" data-target="#proses"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button></li>
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/mEdit') ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                        <li><a class="dropdown-item tombol-hapus" href="tes"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item text-success tombol-setuju" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
+                                        <li><a class="dropdown-item text-danger tombol-tolak" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                     </ul>
                                 </div>
                             </td>

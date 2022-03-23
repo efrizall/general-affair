@@ -1,5 +1,14 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col my-auto">
+            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/tTambah') ?>">
+            <i class="fas fa-fw fa-plus"></i> Tambah Permintaan
+            </a>                        
+        </div>
+    </div>
 
 
     <!-- DataTales Example -->
@@ -23,25 +32,29 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>2022-03-19</td>
+                            <td>199/FPK/RNI/02/2022</td>
+                            <td>Efrizal</td>
+                            <td>Kunjungan ke anak perusahaan</td>
+                            <td>Belum Kembali</td>
+                            <td>
+                                1. AVP Pelayanan Strategis SDM & Umum :<b>(Belum Disetujui)</b>
+                                <br>
+                                2. AVP Pengadaan : <b>(Belum Disetujui)</b>
+                            </td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="aksi" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-fw fa-list"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="aksi">
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                        <li><a class="dropdown-item" href="tDetail/1"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                         <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                        <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                        <li><a class="dropdown-item text-success" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
-                                        <li><a class="dropdown-item text-danger" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                        <li><button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button></li>
+                                        <li><a class="dropdown-item" href="<?= base_url('admin/tEdit') ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                        <li><a class="dropdown-item tombol-hapus" href=""><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item text-success tombol-setuju" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
+                                        <li><a class="dropdown-item text-danger tombol-tolak" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                     </ul>
                                 </div>
                             </td>

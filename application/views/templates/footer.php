@@ -20,11 +20,11 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="logoutModal">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -36,6 +36,77 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Proses Modal -->
+<div class="modal fade" id="proses" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="proses">Ubah Proses</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form>
+      <div class="modal-body">
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama">
+            </div>
+            <div class="form-group">
+                <label for="divisi">Divisi</label>
+                <input type="text" class="form-control" id="divisi" name="divisi">
+            </div>
+            <div class="form-group">
+                <label for="catatan">Catatan</label>
+                <textarea class="form-control" id="catatan" name="status" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status">
+                <option selected disabled>Belum diproses</option>    
+                <option value="Sedang diproses">Sedang diproses</option>
+                <option value="Selesai">Selesai</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Status Mobil Modal -->
+<div class="modal fade" id="statusMobil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="statusMobil">Ubah Status Mobil</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form>
+      <div class="modal-body">
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status">
+                <option selected disabled value="Belum dikembalikan">Belum dikembalikan</option>    
+                <option value="Sudah dikembalikan">Sudah dikembalikan</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+    </form>
+    </div>
+  </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
@@ -57,6 +128,7 @@
 
 <!-- Swal -->
 <script src="<?= base_url('assets/swal-js/'); ?>sweetalert2.all.min.js"></script>
+<script src="<?= base_url('assets/js/'); ?>myscript.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -70,6 +142,8 @@
         }
         ?>
     })
+
+    
 </script>
 
 </body>
