@@ -10,7 +10,7 @@ class Auth extends CI_Controller {
     public function index(){
         // Rules
         // Mengecek semua input sudah sesuai rules
-        $this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+        $this->form_validation->set_rules('nip', 'NIP', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
@@ -24,17 +24,17 @@ class Auth extends CI_Controller {
     }
 
     private function _login(){
-        $nik = $this->input->post('nik');
+        $nip = $this->input->post('nip');
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['nik' => $nik])->row_array();
+        $user = $this->db->get_where('user', ['nip' => $nip])->row_array();
         if($user){
             if($password == $user['password']){
                 // Mengirim data menggunakan session
                 $data = [
                     'id' => $user['id'],
                     'nama' => $user['name'],
-                    'nik' => $user['nik'],
+                    'nip' => $user['nip'],
                     'role_id' => $user['role_id']
                 ];
                 
@@ -56,14 +56,14 @@ class Auth extends CI_Controller {
                 redirect(base_url(''));
             }
         }else{
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIK tidak terdaftar</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIP tidak terdaftar</div>');
             redirect(base_url(''));
         }
     }
 
     public function logout()
     {
-        $this->session->unset_userdata('nik');
+        $this->session->unset_userdata('nip');
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('role_id');
 

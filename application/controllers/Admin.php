@@ -18,7 +18,7 @@ class Admin extends CI_Controller
         if($role_id == 1 && $logged){
             $data['title'] = "Dashboard";
             $data['role_id'] = $role_id;
-            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();    
+            $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();    
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -37,7 +37,7 @@ class Admin extends CI_Controller
         $data['title'] = "Maintenance";
         $data['data'] = $this->Maintenance_model->select();
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -50,7 +50,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Transportasi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -63,7 +63,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Ekspedisi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -76,7 +76,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Maintenance";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -89,7 +89,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Transportasi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -102,7 +102,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Ekspedisi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -115,7 +115,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Manajemen User";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -128,7 +128,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Manajemen Mobil";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -142,7 +142,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -156,7 +156,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -170,7 +170,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -183,7 +183,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Tambah Maintenance";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
 
         // Set Rules
@@ -224,7 +224,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -238,7 +238,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -252,7 +252,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -266,7 +266,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -280,7 +280,7 @@ class Admin extends CI_Controller
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
