@@ -17,8 +17,8 @@
                                 <?= $this->session->flashdata('message'); ?>
                                 <form class="user" method="post" action="<?= base_url('auth') ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="nik" placeholder="NIK" name="nik" value="<?= set_value('nik') ?>">
-                                        <?= form_error('nik', '<small class="text-danger">', '</small>') ?>
+                                        <input type="text" class="form-control form-control-user" id="nip" placeholder="NIP" name="nip" value="<?= set_value('nip') ?>">
+                                        <?= form_error('nip', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
