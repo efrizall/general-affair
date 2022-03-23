@@ -150,31 +150,31 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tDetail($id){
+    public function tDetail(){
         $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
-        $data['data'] = $this->Maintenance_model->selectId($id);
+        // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('permintaan/detail_m', $data);
+        $this->load->view('permintaan/detail_t', $data);
         $this->load->view('templates/footer');
     }
 
-    public function eDetail($id){
+    public function eDetail(){
         $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
-        $data['data'] = $this->Maintenance_model->selectId($id);
+        // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $role_id;
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('permintaan/detail_m', $data);
+        $this->load->view('permintaan/detail_e', $data);
         $this->load->view('templates/footer');
     }
     
@@ -216,5 +216,75 @@ class Admin extends CI_Controller
                 'Permintaan ditambahkan');
             redirect('admin/pMaintenance');
         }
+    }
+
+    public function tTambah(){
+        $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['role_id'] = $role_id;
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/tambah_t', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function eTambah(){
+        $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['role_id'] = $role_id;
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/tambah_e', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function mEdit(){
+        $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['role_id'] = $role_id;
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/edit_m', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function tEdit(){
+        $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['role_id'] = $role_id;
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/edit_t', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function eEdit(){
+        $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['role_id'] = $role_id;
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/edit_e', $data);
+        $this->load->view('templates/footer');
     }
 }
