@@ -133,6 +133,27 @@
         ?>
     })
 
+    // Swal Hapus
+    $(".tombol-hapus").on("click", function (e) {
+    e.preventDefault(); //menghilangkan aksi default
+    const href = $(this).attr("href");
+    Swal.fire({
+        title: "Yakin ingin menghapus?",
+        text: "Data ini tidak bisa dikembalikan lagi!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yakin, hapus!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+        document.location.href = href; //Memindahkan halaman ke href tombol
+        } else {
+        console.log("tes");
+        }
+    });
+    });
+
     
 </script>
 

@@ -8,25 +8,26 @@ if (flashdata) {
   });
 }
 
-// Swal Hapus
-$(".tombol-hapus").on("click", function (e) {
-  e.preventDefault(); //menghilangkan aksi default
-  const href = $(this).attr("href");
-  Swal.fire({
-    title: "Yakin ingin menghapus?",
-    text: "Data ini tidak bisa dikembalikan lagi!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yakin, hapus!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      console.log(href);
-      //   document.location.href = href; //Memindahkan halaman ke href tombol
-    }
-  });
-});
+// // Swal Hapus
+// $(".tombol-hapus").on("click", function (e) {
+//   e.preventDefault(); //menghilangkan aksi default
+//   const href = $(this).attr("href");
+//   Swal.fire({
+//     title: "Yakin ingin menghapus?",
+//     text: "Data ini tidak bisa dikembalikan lagi!",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#3085d6",
+//     cancelButtonColor: "#d33",
+//     confirmButtonText: "Yakin, hapus!",
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       (document.location.href = href), true; //Memindahkan halaman ke href tombol
+//     } else {
+//       console.log("tes");
+//     }
+//   });
+// });
 
 // Swal Setuju
 $(".tombol-setuju").on("click", function (e) {
@@ -42,7 +43,7 @@ $(".tombol-setuju").on("click", function (e) {
     confirmButtonText: "Ya, setujui!",
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log(href);
+      // console.log(href);
       //   document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });
@@ -62,7 +63,7 @@ $(".tombol-tolak").on("click", function (e) {
     confirmButtonText: "Ya, tidak setujui!",
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log(href);
+      // console.log(href);
       //   document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });

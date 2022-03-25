@@ -4,8 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
     var $role_id, $role;
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
         $this->load->model('Maintenance_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
@@ -258,9 +257,8 @@ class Admin extends CI_Controller
     }
 
     public function mEdit(){
-        // $role_id = $this->session->userdata('role_id');
 
-        $data['title'] = "Detail";
+        $data['title'] = "Edit";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
@@ -308,11 +306,25 @@ class Admin extends CI_Controller
             'required' => 'Status harus diubah !'
         ));
 
-        // $this->Maintenance_model->tambahProses($nama, $divisi);
+        // Jika catatan proses ada maka..
+        $cek_proses = $this->db->get_where('proses', ['maintenance_id' => $id])->row_array();
+        if($cek_proses){
+            $this->Maintenance_model->updateProses($id); // Diupdate saja
+        }else{
+            $this->Maintenance_model->tambahProses($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+        }
         $this->Maintenance_model->updateStatus($id);
         $this->session->set_flashdata(
             'berhasil',
             'Proses diubah');
+        redirect('admin/pMaintenance');
+    }
+
+    public function mHapus($id){
+        $this->Maintenance_model->hapusMaintenance($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus');
         redirect('admin/pMaintenance');
     }
 }

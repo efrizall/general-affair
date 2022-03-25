@@ -8,6 +8,14 @@ class Maintenance_model extends CI_Model{
     public function selectId($table, $id){
         return $this->db->get_where("$table",['id'=>$id])->row_array();
     }
+    
+    function selectMaintenance(){
+        $this->db->select('*');
+        $this->db->from('maintenance');
+        $this->db->join('proses','anggota.id_anggota = simpanan.id_anggota');      
+        $query = $this->db->get();
+        return $query;
+   }
 
     public function tambahMaintenance(){
         $data = [
@@ -17,9 +25,9 @@ class Maintenance_model extends CI_Model{
             'keterangan' => $this->input->post('keterangan',true),
             'status' => 'Belum diproses',
             'tanggal' => $this->input->post('tanggal',true),
-            'app_maintenance_id' => 1,
             'file' => 'Tidak ada',
-            'user_id' => 1
+            'user_id' => 1,
+            'app_maintenance_id' => 1
         ];
 
         $this->db->insert('maintenance', $data);
@@ -57,16 +65,26 @@ class Maintenance_model extends CI_Model{
         $this->db->insert('maintenance', $data);
     }
 
-    public function tambahProses($nama, $divisi){
+    public function tambahProses($id, $nama, $divisi){
 
         $data = [
             'nama' => $nama,
             'divisi' => $divisi,
             'catatan' => '',
-            'status' => $this->input->post('status',true)
+            'status' => $this->input->post('status',true),
+            'maintenance_id' => $id,
+            'update_at' => date('Y-m-d H:i:s'),
         ];
 
         $this->db->insert('proses', $data);
+    }
+
+    public function updateProses($id){
+        $data = [
+            'status' => $this->input->post('status',true)
+        ];
+        $this->db->where('maintenance_id', $id);
+        $this->db->update('proses', $data);
     }
     
     public function updateStatus($id){
@@ -75,5 +93,10 @@ class Maintenance_model extends CI_Model{
         ];
         $this->db->where('id', $id);
         $this->db->update('maintenance', $data);
+    }
+
+    public function hapusMaintenance($id){
+        $this->db->where('id', $id);
+        $this->db->delete('maintenance');
     }
 }
