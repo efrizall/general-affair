@@ -31,16 +31,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        foreach($data as $row){
+                            $tanggal = date_create($row['tanggal']);
+                        ?>
                         <tr>
-                            <td>2022-03-19</td>
-                            <td>199/FPK/RNI/02/2022</td>
-                            <td>Efrizal</td>
-                            <td>Kunjungan ke anak perusahaan</td>
-                            <td>Belum Kembali</td>
+                            <td><?= date_format($tanggal, "d-m-Y") ?></td>
+                            <td><?= $row['id'] ?>/FPK/RNI/<?= date_format($tanggal, "m/Y") ?></td>
+                            <td><?= $row['nama'] ?></td>
+                            <td><?= $row['keperluan'] ?></td>
+                            <td><?= $row['status'] ?></td>
                             <td>
-                                1. AVP Pelayanan Strategis SDM & Umum :<b>(Belum Disetujui)</b>
+                                1. AVP Pelayanan Strategis SDM & Umum :<b>(<?= $row['app_transportasi_id'] ?>)</b>
                                 <br>
-                                2. AVP Pengadaan : <b>(Belum Disetujui)</b>
+                                2. AVP Pengadaan : <b>(<?= $row['app_transportasi_id'] ?>)</b>
                             </td>
                             <td>
                                 <div class="dropdown">
@@ -59,6 +63,9 @@
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

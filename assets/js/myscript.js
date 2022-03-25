@@ -1,6 +1,5 @@
 // Flash data berhasil
 const flashdata = $(".flash-data").data("flashdata");
-// console.log(flashdata);
 if (flashdata) {
   Swal.fire({
     icon: "success",
@@ -66,5 +65,17 @@ $(".tombol-tolak").on("click", function (e) {
       console.log(href);
       //   document.location.href = href; //Memindahkan halaman ke href tombol
     }
+  });
+});
+
+// Ubah proses
+$(document).ready(function () {
+  // Untuk sunting
+  $("#proses").on("show.bs.modal", function (event) {
+    var div = $(event.relatedTarget); // Tombol dimana modal di tampilkan
+    var modal = $(this);
+
+    // Isi nilai pada field
+    modal.find("#id").attr("value", div.data("id"));
   });
 });

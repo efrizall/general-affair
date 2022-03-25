@@ -3,16 +3,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
+    var $role_id, $role;
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Maintenance_model');
-        // $this->load->library('form_validation');
+        $this->role_id = $this->session->userdata('role_id'); //For role id
+        if($this->role_id == 1){
+            $this->role = 'admin';
+        }elseif($this->role == 2){
+            $this->role = 'pemeriksa';
+        }elseif($this->role == 3){
+            $this->role = 'staff';
+        }else{
+            $this->role = 'umum';
+        }
     }
 
-    public function index()
-    {
-        $role_id = $this->session->userdata('role_id');
+    public function index(){
+        $role_id = $this->role_id;
         $logged = $this->session->userdata('logged');
 
         if($role_id == 1 && $logged){
@@ -32,11 +41,12 @@ class Admin extends CI_Controller
     }
 
     public function pMaintenance(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Maintenance";
-        $data['data'] = $this->Maintenance_model->select();
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Maintenance_model->select('maintenance');
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -46,23 +56,25 @@ class Admin extends CI_Controller
     }
 
     public function pTransportasi(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Transportasi";
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Maintenance_model->select('transportasi');
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/transportasi', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
     }
 
     public function pEkspedisi(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -72,10 +84,10 @@ class Admin extends CI_Controller
     }
 
     public function rMaintenance(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Maintenance";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -85,10 +97,10 @@ class Admin extends CI_Controller
     }
 
     public function rTransportasi(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Transportasi";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -98,10 +110,10 @@ class Admin extends CI_Controller
     }
 
     public function rEkspedisi(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -111,10 +123,10 @@ class Admin extends CI_Controller
     }
 
     public function mUser(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Manajemen User";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -124,10 +136,10 @@ class Admin extends CI_Controller
     }
 
     public function mMobil(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Manajemen Mobil";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -137,11 +149,11 @@ class Admin extends CI_Controller
     }
 
     public function mDetail($id){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
-        $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Maintenance_model->selectId('maintenance',$id);
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -151,11 +163,11 @@ class Admin extends CI_Controller
     }
 
     public function tDetail(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -165,11 +177,11 @@ class Admin extends CI_Controller
     }
 
     public function eDetail(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -179,10 +191,10 @@ class Admin extends CI_Controller
     }
     
     public function mTambah(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Tambah Maintenance";
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
 
@@ -209,8 +221,7 @@ class Admin extends CI_Controller
             $this->load->view('permintaan/tambah_m', $data);
             $this->load->view('templates/footer');
         }else{
-            $id = $this->session->userdata('id');
-            $this->Maintenance_model->tambahMaintenance($id);
+            $this->Maintenance_model->tambahMaintenance();
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan');
@@ -219,11 +230,11 @@ class Admin extends CI_Controller
     }
 
     public function tTambah(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -233,11 +244,11 @@ class Admin extends CI_Controller
     }
 
     public function eTambah(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -247,11 +258,11 @@ class Admin extends CI_Controller
     }
 
     public function mEdit(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -261,11 +272,11 @@ class Admin extends CI_Controller
     }
 
     public function tEdit(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -275,16 +286,33 @@ class Admin extends CI_Controller
     }
 
     public function eEdit(){
-        $role_id = $this->session->userdata('role_id');
+        // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
         // $data['data'] = $this->Maintenance_model->selectId($id);
-        $data['role_id'] = $role_id;
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/edit_e', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function tambahProses(){
+        $nama = $this->session->userdata('nama');
+        $divisi = $this->session->userdata('divisi');
+        $id = $this->input->post('id');
+
+        $this->form_validation->set_rules('status', 'Status', 'required',array(
+            'required' => 'Status harus diubah !'
+        ));
+
+        // $this->Maintenance_model->tambahProses($nama, $divisi);
+        $this->Maintenance_model->updateStatus($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Proses diubah');
+        redirect('admin/pMaintenance');
     }
 }

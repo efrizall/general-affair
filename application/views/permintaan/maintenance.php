@@ -5,7 +5,7 @@
         <div class="col-sm-4">
         </div>
         <div class="col my-auto">
-            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/mTambah') ?>">
+            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url("$role/mTambah") ?>">
             <i class="fas fa-fw fa-plus"></i> Tambah Permintaan
             </a>                        
         </div>
@@ -39,7 +39,7 @@
                             $tanggal = date_create($row['tanggal']);
                         ?>
                         <tr>
-                            <td><?= $row['tanggal'] ?></td>
+                            <td><?= date_format($tanggal, "d-m-Y") ?></td>
                             <td><?= $row['id'] ?>/FPL/RNI/<?= date_format($tanggal, "m/Y") ?></td>
                             <td><?= $row['nama'] ?></td>
                             <td><?= $row['permintaan'] ?></td>
@@ -51,9 +51,17 @@
                                         <i class="fas fa-fw fa-list"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="aksi">
-                                        <li><a class="dropdown-item" href="<?= base_url('admin/mDetail/').$row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                        <li><a class="dropdown-item" href="<?= base_url("admin/mDetail/").$row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                         <li><a class="dropdown-item" href="" id="hapus"><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
-                                        <li><button type="button" class="dropdown-item" data-toggle="modal" data-target="#proses"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button></li>
+                                        <li>
+                                            <button type="button"
+                                            class="dropdown-item"
+                                            data-toggle="modal"
+                                            data-target="#proses"
+                                            data-id="<?= $row['id'] ?>"
+                                            data-nama="<?= $this->session->userdata('nama') ?>"
+                                            data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button>
+                                        </li>
                                         <li><a class="dropdown-item" href="<?= base_url('admin/mEdit') ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
                                         <li><a class="dropdown-item tombol-hapus" href="tes"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                         <li><a class="dropdown-item text-success tombol-setuju" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>

@@ -48,20 +48,9 @@
             <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form>
-      <div class="modal-body">
-            <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama">
-            </div>
-            <div class="form-group">
-                <label for="divisi">Divisi</label>
-                <input type="text" class="form-control" id="divisi" name="divisi">
-            </div>
-            <div class="form-group">
-                <label for="catatan">Catatan</label>
-                <textarea class="form-control" id="catatan" name="status" rows="3"></textarea>
-            </div>
+      <form action="<?= base_url('admin/tambahProses') ?>" method="post">
+        <div class="modal-body">
+            <input type="text" hidden id="id" name="id" value="">
             <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-control" id="status" name="status">
@@ -70,12 +59,13 @@
                 <option value="Selesai">Selesai</option>
                 </select>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-    </form>
+            <?= form_error('status', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
     </div>
   </div>
 </div>

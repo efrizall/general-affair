@@ -34,6 +34,7 @@ class Auth extends CI_Controller {
                 $data = [
                     'id' => $user['id'],
                     'nama' => $user['name'],
+                    'divisi' => $user['divisi'],
                     'nip' => $user['nip'],
                     'role_id' => $user['role_id']
                 ];
@@ -65,6 +66,7 @@ class Auth extends CI_Controller {
     {
         $this->session->unset_userdata('nip');
         $this->session->unset_userdata('name');
+        $this->session->unset_userdata('divisi');
         $this->session->unset_userdata('role_id');
 
         // Redirect ke login page
