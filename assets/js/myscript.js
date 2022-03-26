@@ -1,33 +1,33 @@
 // Flash data berhasil
-const flashdata = $(".flash-data").data("flashdata");
-if (flashdata) {
-  Swal.fire({
-    icon: "success",
-    title: "Berhasil",
-    text: flashdata,
-  });
-}
-
-// // Swal Hapus
-// $(".tombol-hapus").on("click", function (e) {
-//   e.preventDefault(); //menghilangkan aksi default
-//   const href = $(this).attr("href");
+// const flashdata = $(".flash-data").data("flashdata");
+// if (flashdata) {
 //   Swal.fire({
-//     title: "Yakin ingin menghapus?",
-//     text: "Data ini tidak bisa dikembalikan lagi!",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#3085d6",
-//     cancelButtonColor: "#d33",
-//     confirmButtonText: "Yakin, hapus!",
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       (document.location.href = href), true; //Memindahkan halaman ke href tombol
-//     } else {
-//       console.log("tes");
-//     }
+//     icon: "success",
+//     title: "Berhasil",
+//     text: flashdata,
 //   });
-// });
+// }
+
+// Swal Hapus
+$(".tombol-hapus").on("click", function(e) {
+  e.preventDefault(); //menghilangkan aksi default
+  const href = $(this).attr("href");
+  Swal.fire({
+      title: "Yakin ingin menghapus?",
+      text: "Data ini tidak bisa dikembalikan lagi!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yakin, hapus!",
+  }).then((result) => {
+      if (result.isConfirmed) {
+          document.location.href = href; //Memindahkan halaman ke href tombol
+      } else {
+          console.log("tes");
+      }
+  });
+});
 
 // Swal Setuju
 $(".tombol-setuju").on("click", function (e) {
@@ -44,12 +44,12 @@ $(".tombol-setuju").on("click", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // console.log(href);
-      //   document.location.href = href; //Memindahkan halaman ke href tombol
+        document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });
 });
 
-// Swal tolak
+// // Swal tolak
 $(".tombol-tolak").on("click", function (e) {
   e.preventDefault(); //menghilangkan aksi default
   const href = $(this).attr("href");
@@ -63,8 +63,8 @@ $(".tombol-tolak").on("click", function (e) {
     confirmButtonText: "Ya, tidak setujui!",
   }).then((result) => {
     if (result.isConfirmed) {
-      // console.log(href);
-      //   document.location.href = href; //Memindahkan halaman ke href tombol
+      console.log(href);
+        document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });
 });
@@ -80,3 +80,14 @@ $(document).ready(function () {
     modal.find("#id").attr("value", div.data("id"));
   });
 });
+
+// Urutan data maintenance
+$(document).ready(function() {
+  $('#maintenance').DataTable( {
+      "columnDefs" : [{"targets":0, "type":"date-eu"}],
+      "order": [
+          [1, "desc"]
+      ],
+      "autoWidth": false
+  } );
+} );
