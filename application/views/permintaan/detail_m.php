@@ -7,8 +7,8 @@
         </div>
         <div class="col my-auto">
             <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/pMaintenance') ?>">
-            <i class="fas fa-fw fa-chevron-left"></i> Kembali
-            </a>                        
+                <i class="fas fa-fw fa-chevron-left"></i> Kembali
+            </a>
         </div>
     </div>
     <div class="card card-detail">
@@ -21,7 +21,7 @@
                 <div class="col-md-1 d-none d-md-block">:</div>
                 <?php $tanggal = date_create($data['tanggal']) ?>
                 <div class="col-md-8"> <?= $data['id'] ?>/FPL/RNI/<?= date_format($tanggal, "m/Y") ?> </div>
-            </div>  
+            </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Nama</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
@@ -50,7 +50,7 @@
             <div class="row mt-3">
                 <div class="col-md-3"><b>Pemeriksa Permintaan</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8"><?= $data['app_maintenance_id'] ?></div>
+                <div class="col-md-8"><?= $data['pemeriksa'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Tanggal Permintaan</b> </div>

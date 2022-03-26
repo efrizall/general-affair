@@ -40,63 +40,63 @@
 
 <!-- Proses Modal -->
 <div class="modal fade" id="proses" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="proses">Ubah Proses</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <form action="<?= base_url('admin/tambahProses') ?>" method="post">
-        <div class="modal-body">
-            <input type="text" hidden id="id" name="id" value="">
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" name="status">
-                <option selected disabled>Belum diproses</option>    
-                <option value="Sedang diproses">Sedang diproses</option>
-                <option value="Selesai">Selesai</option>
-                </select>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proses">Ubah Proses</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <?= form_error('status', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-        </form>
+            <form action="<?= base_url('admin/tambahProses') ?>" method="post">
+                <div class="modal-body">
+                    <input type="text" hidden id="id" name="id" value="">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option selected disabled>Belum diproses</option>
+                            <option value="Sedang diproses">Sedang diproses</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                    </div>
+                    <?= form_error('status', '<small class="text-danger">', '</small>') ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Status Mobil Modal -->
 <div class="modal fade" id="statusMobil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="statusMobil">Ubah Status Mobil</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <form>
-      <div class="modal-body">
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" name="status">
-                <option selected disabled value="Belum dikembalikan">Belum dikembalikan</option>    
-                <option value="Sudah dikembalikan">Sudah dikembalikan</option>
-                </select>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusMobil">Ubah Status Mobil</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option selected disabled value="Belum dikembalikan">Belum dikembalikan</option>
+                            <option value="Sudah dikembalikan">Sudah dikembalikan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-    </form>
     </div>
-  </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
@@ -121,8 +121,8 @@
 <script src="<?= base_url('assets/js/'); ?>myscript.js"></script>
 
 <script>
-    $(document).ready(function(){
-        <?php if($this->session->flashdata('berhasil')){ ?>
+    $(document).ready(function() {
+        <?php if ($this->session->flashdata('berhasil')) { ?>
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil',
@@ -132,29 +132,6 @@
         }
         ?>
     })
-
-    // Swal Hapus
-    $(".tombol-hapus").on("click", function (e) {
-    e.preventDefault(); //menghilangkan aksi default
-    const href = $(this).attr("href");
-    Swal.fire({
-        title: "Yakin ingin menghapus?",
-        text: "Data ini tidak bisa dikembalikan lagi!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yakin, hapus!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-        document.location.href = href; //Memindahkan halaman ke href tombol
-        } else {
-        console.log("tes");
-        }
-    });
-    });
-
-    
 </script>
 
 </body>
