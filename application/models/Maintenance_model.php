@@ -1,46 +1,54 @@
-<?php 
-class Maintenance_model extends CI_Model{
-    
-    public function select($table){
+<?php
+class Maintenance_model extends CI_Model
+{
+
+    public function select($table)
+    {
         return $this->db->get("$table")->result_array();
     }
 
-    public function selectId($table, $id){
-        return $this->db->get_where("$table",['id'=>$id])->row_array();
+    public function selectId($table, $id)
+    {
+        return $this->db->get_where("$table", ['id' => $id])->row_array();
     }
-    
-    function selectMaintenance(){
+
+    function selectMaintenance()
+    {
         $this->db->select('*');
         $this->db->from('maintenance');
-        $this->db->join('proses','anggota.id_anggota = simpanan.id_anggota');      
+        $this->db->join('proses', 'anggota.id_anggota = simpanan.id_anggota');
         $query = $this->db->get();
         return $query;
-   }
+    }
 
-    public function tambahMaintenance(){
+    public function tambahMaintenance()
+    {
         $data = [
             'nama' => $this->input->post('nama', true),
-            'divisi' => $this->input->post('divisi',true),
-            'permintaan' => $this->input->post('permintaan',true),
-            'keterangan' => $this->input->post('keterangan',true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
             'status' => 'Belum diproses',
-            'tanggal' => $this->input->post('tanggal',true),
+            'tanggal' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
             'file' => 'Tidak ada',
             'user_id' => 1,
-            'app_maintenance_id' => 1
+            'ttd_avp' => 'Belum Disetujui',
+            'ttd_pemeriksa' => 'Belum Disetujui'
         ];
 
         $this->db->insert('maintenance', $data);
     }
 
-    public function tambahTransportasi(){
+    public function tambahTransportasi()
+    {
         $data = [
             'nama' => $this->input->post('nama', true),
-            'divisi' => $this->input->post('divisi',true),
-            'permintaan' => $this->input->post('permintaan',true),
-            'keterangan' => $this->input->post('keterangan',true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
             'status' => 'Belum diproses',
-            'tanggal' => $this->input->post('tanggal',true),
+            'tanggal' => $this->input->post('tanggal', true),
             'app_maintenance_id' => 1,
             'file' => 'Tidak ada',
             'user_id' => 1
@@ -49,14 +57,15 @@ class Maintenance_model extends CI_Model{
         $this->db->insert('maintenance', $data);
     }
 
-    public function tambahEkspedisi(){
+    public function tambahEkspedisi()
+    {
         $data = [
             'nama' => $this->input->post('nama', true),
-            'divisi' => $this->input->post('divisi',true),
-            'permintaan' => $this->input->post('permintaan',true),
-            'keterangan' => $this->input->post('keterangan',true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
             'status' => 'Belum diproses',
-            'tanggal' => $this->input->post('tanggal',true),
+            'tanggal' => $this->input->post('tanggal', true),
             'app_maintenance_id' => 1,
             'file' => 'Tidak ada',
             'user_id' => 1
@@ -65,13 +74,56 @@ class Maintenance_model extends CI_Model{
         $this->db->insert('maintenance', $data);
     }
 
-    public function tambahProses($id, $nama, $divisi){
+    public function editMaintenance($id)
+    {
+        $data = [
+            'nama' => $this->input->post('nama', true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
+            'tanggal' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
+    }
+
+    public function editTransportasi($id)
+    {
+        $data = [
+            'nama' => $this->input->post('nama', true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
+            'tanggal' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('transportasi', $data);
+    }
+
+    public function editEkspedisi($id)
+    {
+        $data = [
+            'nama' => $this->input->post('nama', true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
+            'tanggal' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
+    }
+
+    public function tambahProses($id, $nama, $divisi)
+    {
 
         $data = [
             'nama' => $nama,
             'divisi' => $divisi,
             'catatan' => '',
-            'status' => $this->input->post('status',true),
+            'status' => $this->input->post('status', true),
             'maintenance_id' => $id,
             'update_at' => date('Y-m-d H:i:s'),
         ];
@@ -79,24 +131,67 @@ class Maintenance_model extends CI_Model{
         $this->db->insert('proses', $data);
     }
 
-    public function updateProses($id){
+    public function updateProses($id)
+    {
         $data = [
-            'status' => $this->input->post('status',true)
+            'status' => $this->input->post('status', true)
         ];
         $this->db->where('maintenance_id', $id);
         $this->db->update('proses', $data);
     }
-    
-    public function updateStatus($id){
+
+    public function updateStatus($id)
+    {
         $data = [
-            'status' => $this->input->post('status',true)
+            'status' => $this->input->post('status', true)
         ];
         $this->db->where('id', $id);
         $this->db->update('maintenance', $data);
     }
 
-    public function hapusMaintenance($id){
+    public function hapusMaintenance($id)
+    {
         $this->db->where('id', $id);
         $this->db->delete('maintenance');
+    }
+
+    public function ttdAvp($id)
+    {
+        $data = [
+            'ttd_avp' => 'Disetujui'
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
+    }
+
+    public function ttdPemeriksa($id)
+    {
+        $data = [
+            'ttd_pemeriksa' => 'Disetujui'
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
+    }
+
+    public function tolakAvp($id)
+    {
+        $data = [
+            'ttd_avp' => 'Tidak Disetujui'
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
+    }
+
+    public function tolakPemeriksa($id)
+    {
+        $data = [
+            'ttd_pemeriksa' => 'Tidak Disetujui'
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('maintenance', $data);
     }
 }
