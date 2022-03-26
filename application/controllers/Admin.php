@@ -260,11 +260,17 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
             'required' => 'Divisi harus diisi !'
         ));
-        $this->form_validation->set_rules('permintaan', 'Permintaan', 'required', array(
-            'required' => 'Permintaan harus diisi !'
+        $this->form_validation->set_rules('tujuan', 'Tujuan', 'required', array(
+            'required' => 'Tujuan harus diisi !'
         ));
-        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required', array(
-            'required' => 'Tanggal harus diisi !'
+        $this->form_validation->set_rules('keperluan', 'Keperluan', 'required', array(
+            'required' => 'Keperluan harus diisi !'
+        ));
+        $this->form_validation->set_rules('tanggal_pakai', 'Tanggal Pakai', 'required', array(
+            'required' => 'Tanggal pakai harus diisi !'
+        ));
+        $this->form_validation->set_rules('tanggal_kembali', 'Tanggal Kembali', 'required', array(
+            'required' => 'Tanggal kembali harus diisi !'
         ));
         $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
             'required' => 'Pemeriksa harus dipilih !'
@@ -408,9 +414,9 @@ class Admin extends CI_Controller
     public function ttd($id)
     {
         if ($this->role == 'admin') {
-            $this->Maintenance_model->ttdAvp($id);
+            $this->Approval_model->ttdAvp($id);
         } else {
-            $this->Maintenance_model->ttdPemeriksa($id);
+            $this->Approval_model->ttdPemeriksa($id);
         }
 
         $this->session->set_flashdata(
@@ -423,9 +429,9 @@ class Admin extends CI_Controller
     public function tolak($id)
     {
         if ($this->role == 'admin') {
-            $this->Maintenance_model->tolakAvp($id);
+            $this->Approval_model->tolakAvp($id);
         } else {
-            $this->Maintenance_model->tolakPemeriksa($id);
+            $this->Approval_model->tolakPemeriksa($id);
         }
 
         $this->session->set_flashdata(
