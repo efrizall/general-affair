@@ -8,6 +8,8 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Maintenance_model');
+        $this->load->model('Approval_model');
+        $this->load->model('Transportasi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if ($this->role_id == 1) {
             $this->role = 'admin';
@@ -159,8 +161,6 @@ class Admin extends CI_Controller
 
     public function mDetail($id)
     {
-        // $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Detail";
         $data['data'] = $this->Maintenance_model->selectId('maintenance', $id);
         $data['role_id'] = $this->role_id;
@@ -172,12 +172,10 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tDetail()
+    public function tDetail($id)
     {
-        // $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Detail";
-        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['data'] = $this->Transportasi_model->selectTransportasiId($id);
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
@@ -246,7 +244,7 @@ class Admin extends CI_Controller
     public function tTambah()
     {
 
-        $data['title'] = "Detail";
+        $data['title'] = "Tambah Transportasi";
         // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $this->role_id;
         $data['mobil'] = $this->Maintenance_model->select('mobil');
@@ -267,13 +265,25 @@ class Admin extends CI_Controller
             'required' => 'Keperluan harus diisi !'
         ));
         $this->form_validation->set_rules('tanggal_pakai', 'Tanggal Pakai', 'required', array(
-            'required' => 'Tanggal pakai harus diisi !'
+            'required' => 'Tanggal pakai harus ditentukan !'
         ));
         $this->form_validation->set_rules('tanggal_kembali', 'Tanggal Kembali', 'required', array(
-            'required' => 'Tanggal kembali harus diisi !'
+            'required' => 'Tanggal kembali harus ditentukan !'
+        ));
+        $this->form_validation->set_rules('jam_pakai', 'Jam Pakai', 'required', array(
+            'required' => 'Jam pakai harus diisi !'
+        ));
+        $this->form_validation->set_rules('jam_kembali', 'Jam Kembali', 'required', array(
+            'required' => 'Jam kembali harus diisi !'
+        ));
+        $this->form_validation->set_rules('mobil', 'Jenis Mobil', 'required', array(
+            'required' => 'Jenis mobil harus diisi !'
         ));
         $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
             'required' => 'Pemeriksa harus dipilih !'
+        ));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required', array(
+            'required' => 'Tanggal harus ditentukan !'
         ));
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -282,7 +292,7 @@ class Admin extends CI_Controller
             $this->load->view('permintaan/tambah_t', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->Maintenance_model->tambahTransportasi();
+            $this->Transportasi_model->tambahTransportasi();
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan'

@@ -7,6 +7,12 @@ class Transportasi_model extends CI_Model
 
     public function selectTransportasiId($id)
     {
+        $this->db->select('*');
+        $this->db->from('transportasi');
+        $this->db->join('mobil', "transportasi.mobil_id = mobil.id AND transportasi.id = $id");
+        // $this->db->where('id', $id);
+        $query = $this->db->get()->row_array();
+        return $query;
     }
 
     public function tambahTransportasi()
@@ -14,20 +20,20 @@ class Transportasi_model extends CI_Model
         $data = [
             'nama' => $this->input->post('nama', true),
             'divisi' => $this->input->post('divisi', true),
-            'mobil_id' => $this->input->post('permintaan', true),
-            'tujuan' => $this->input->post('keterangan', true),
-            'keperluan' => 'Belum diproses',
-            'tgl_pakai' => $this->input->post('tanggal', true),
-            'tgl_kembali' => 1,
-            'jam_pakai' => $this->input->post('tanggal', true),
-            'jam_kembali' => $this->input->post('tanggal', true),
-            'pemeriksa' => $this->input->post('tanggal', true),
+            'mobil_id' => $this->input->post('mobil', true),
+            'tujuan' => $this->input->post('tujuan', true),
+            'keperluan' => $this->input->post('keperluan', true),
+            'tgl_pakai' => $this->input->post('tanggal_pakai', true),
+            'tgl_kembali' => $this->input->post('tanggal_kembali', true),
+            'jam_pakai' => $this->input->post('jam_pakai', true),
+            'jam_kembali' => $this->input->post('jam_kembali', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
             'ttd_avp' => 'Belum Disetujui',
             'ttd_pemeriksa' => 'Belum Disetujui',
             'status' => 'Belum Dikembalikan',
             'tanggal' => $this->input->post('tanggal', true),
             'file' => 'Tidak ada',
-            'user_id' => 1
+            'user_id' => $this->input->post('id', true),
         ];
 
         $this->db->insert('transportasi', $data);

@@ -52,7 +52,7 @@
                                             <i class="fas fa-fw fa-list"></i>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="aksi">
-                                            <li><a class="dropdown-item" href="tDetail/1"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                            <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                             <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                             <li><button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button></li>
                                             <li><a class="dropdown-item" href="<?= base_url('admin/tEdit') ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>

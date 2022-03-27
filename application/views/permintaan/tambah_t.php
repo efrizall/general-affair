@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
             <form action="" method="post">
+                <input type="text" hidden name="id" id="id" value="<?= $user['id'] ?>">
                 <div class="row">
                     <div class="col">
                         <label class="" for="nama">Nama</label>
@@ -23,23 +24,24 @@
                     <div class="col">
                         <label class="" for="permintaan">Tujuan</label>
                         <input type="text" class="form-control" name="tujuan" id="tujuan">
-                        <?= form_error('permintaan', '<small class="text-danger">', '</small>') ?>
+                        <?= form_error('tujuan', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
                         <label class="" for="ket">Keperluan</label>
                         <input type="text" class="form-control" name="keperluan" id="keperluan">
+                        <?= form_error('keperluan', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="tgl_surat">Tanggal Pakai</label>
+                        <label for="tanggal_pakai">Tanggal Pakai</label>
                         <input type="date" class="form-control" id="tanggal_pakai" name="tanggal_pakai">
                         <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('tanggal_pakai', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
-                        <label for="tgl_surat">Tanggal Kembali</label>
+                        <label for="tanggal_kembali">Tanggal Kembali</label>
                         <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali">
                         <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
