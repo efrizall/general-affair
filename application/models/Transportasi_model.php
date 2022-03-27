@@ -58,4 +58,28 @@ class Transportasi_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('transportasi');
     }
+
+    public function tambahStatus($id, $nama, $divisi)
+    {
+
+        $data = [
+            'nama' => $nama,
+            'divisi' => $divisi,
+            'catatan' => '',
+            'status' => $this->input->post('status', true),
+            'transportasi_id' => $id,
+            'update_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $this->db->insert('status_mobil', $data);
+    }
+
+    public function updateStatus($id)
+    {
+        $data = [
+            'status' => $this->input->post('status', true)
+        ];
+        $this->db->where('mobil_id', $id);
+        $this->db->update('transportasi', $data);
+    }
 }

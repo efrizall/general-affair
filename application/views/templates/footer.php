@@ -80,8 +80,9 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form>
+            <form action="<?= base_url('admin/tambahStatus') ?>" method="post">
                 <div class="modal-body">
+                    <input type="text" hidden id="id" name="id" value="">
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
@@ -132,6 +133,18 @@
         }
         ?>
     })
+
+    // Ubah status mobil
+    $(document).ready(function() {
+        // Untuk sunting
+        $("#statusMobil").on("show.bs.modal", function(event) {
+            var div = $(event.relatedTarget); // Tombol dimana modal di tampilkan
+            var modal = $(this);
+
+            // Isi nilai pada field
+            modal.find("#id").attr("value", div.data("id"));
+        });
+    });
 </script>
 
 </body>
