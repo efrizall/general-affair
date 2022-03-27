@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 26 Mar 2022 pada 02.49
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.23
+-- Waktu pembuatan: 27 Mar 2022 pada 18.56
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -68,17 +69,20 @@ CREATE TABLE `maintenance` (
   `keterangan` varchar(255) NOT NULL,
   `status` varchar(100) NOT NULL,
   `tanggal` date NOT NULL,
+  `pemeriksa` varchar(100) NOT NULL,
   `file` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `app_maintenance_id` int(11) NOT NULL
+  `ttd_avp` varchar(50) NOT NULL,
+  `ttd_pemeriksa` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `maintenance`
 --
 
-INSERT INTO `maintenance` (`id`, `nama`, `divisi`, `permintaan`, `keterangan`, `status`, `tanggal`, `file`, `user_id`, `app_maintenance_id`) VALUES
-(23, 'testing', 'testing', 'testing', 'tes', 'Belum diproses', '2022-03-25', 'Tidak ada', 1, 1);
+INSERT INTO `maintenance` (`id`, `nama`, `divisi`, `permintaan`, `keterangan`, `status`, `tanggal`, `pemeriksa`, `file`, `user_id`, `ttd_avp`, `ttd_pemeriksa`) VALUES
+(28, 'tes edit', 'tes', 'tes', 'tes', 'Sedang diproses', '2022-03-31', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui'),
+(29, 'Yudi Juni Ardiasd', 'divivivivi edit', 'isisisi', '', 'Sedang diproses', '2022-03-25', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui');
 
 -- --------------------------------------------------------
 
@@ -91,6 +95,51 @@ CREATE TABLE `mobil` (
   `jenis` varchar(100) NOT NULL,
   `nopol` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `mobil`
+--
+
+INSERT INTO `mobil` (`id`, `jenis`, `nopol`) VALUES
+(1, 'Toyotan Innova', 'B 2753 STM'),
+(2, 'Suzuki Ertiga', 'B 1863 SRQ'),
+(3, 'Mazda Biante', 'B 1607 SYI'),
+(4, 'Suzuki Ertiga', 'B 1635 SRQ');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemeriksa`
+--
+
+CREATE TABLE `pemeriksa` (
+  `id` int(11) NOT NULL,
+  `pemeriksa` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pemeriksa`
+--
+
+INSERT INTO `pemeriksa` (`id`, `pemeriksa`) VALUES
+(1, 'AVP Pendukung Direksi & Kesekretariatan'),
+(2, 'AVP Komunikasi & Relasi Korporasi'),
+(3, 'AVP TJSL & CSR'),
+(4, 'AVP Hukum Bisnis & Kepatuhan'),
+(5, 'AVP Penasihat Hukum & Litigasi'),
+(6, 'AVP Strategi Korporasi & Transformasi Organisasi'),
+(7, 'AVP Pengendalian Kinerja Korporasi'),
+(8, 'AVP Pengembangan Usaha & Portofolio'),
+(9, 'AVP Riset & Inovasi'),
+(10, 'AVP Keuangan'),
+(11, 'AVP Tresuri'),
+(12, 'AVP Akuntansi'),
+(13, 'AVP Anggaran'),
+(14, 'AVP Operasional & Pengelolaan Informasi Aset'),
+(15, 'AVP Strategi & Sinergi Aset'),
+(16, 'AVP Optimalisasi & Komersialisasi Aset'),
+(17, 'AVP Pelayanan Strategis SDM & Umum'),
+(18, 'AVP Pendukung Strategik');
 
 -- --------------------------------------------------------
 
@@ -115,7 +164,34 @@ CREATE TABLE `proses` (
 INSERT INTO `proses` (`id`, `nama`, `divisi`, `catatan`, `status`, `maintenance_id`, `update_at`) VALUES
 (1, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 14, '2022-03-25 10:50:47'),
 (3, 'tes', 'tes', 'tess', 'tes', 17, '2022-03-25 10:42:15'),
-(6, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 18, '2022-03-25 04:53:58');
+(6, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 18, '2022-03-25 04:53:58'),
+(7, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 28, '2022-03-25 21:47:40'),
+(8, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 29, '2022-03-27 15:33:53'),
+(9, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 30, '2022-03-26 22:04:21');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `status_mobil`
+--
+
+CREATE TABLE `status_mobil` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `divisi` varchar(50) NOT NULL,
+  `catatan` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `transportasi_id` int(11) NOT NULL,
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `status_mobil`
+--
+
+INSERT INTO `status_mobil` (`id`, `nama`, `divisi`, `catatan`, `status`, `transportasi_id`, `update_at`) VALUES
+(1, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 1, '2022-03-27 11:27:22'),
+(2, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 2, '2022-03-27 11:33:32');
 
 -- --------------------------------------------------------
 
@@ -134,18 +210,21 @@ CREATE TABLE `transportasi` (
   `tgl_kembali` date NOT NULL,
   `jam_pakai` time NOT NULL,
   `jam_kembali` time NOT NULL,
+  `pemeriksa` varchar(100) NOT NULL,
+  `ttd_avp` varchar(50) NOT NULL,
+  `ttd_pemeriksa` varchar(50) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `app_transportasi_id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
-  `file` varchar(255) NOT NULL
+  `file` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transportasi`
 --
 
-INSERT INTO `transportasi` (`id`, `nama`, `divisi`, `mobil_id`, `tujuan`, `keperluan`, `tgl_pakai`, `tgl_kembali`, `jam_pakai`, `jam_kembali`, `status`, `app_transportasi_id`, `tanggal`, `file`) VALUES
-(1, 'asd', 'asd', 1, 'asd', 'asd', '2022-03-02', '2022-03-09', '17:11:17', '20:11:17', 'asd', 1, '2022-03-16', 'tidak ada');
+INSERT INTO `transportasi` (`id`, `nama`, `divisi`, `mobil_id`, `tujuan`, `keperluan`, `tgl_pakai`, `tgl_kembali`, `jam_pakai`, `jam_kembali`, `pemeriksa`, `ttd_avp`, `ttd_pemeriksa`, `status`, `tanggal`, `file`, `user_id`) VALUES
+(2, 'Efrizal', 'SDM', 2, 'GBK', 'Lari pagi', '2022-03-27', '2022-03-27', '10:28:00', '10:28:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-27', 'Tidak ada', 5);
 
 -- --------------------------------------------------------
 
@@ -217,9 +296,21 @@ ALTER TABLE `mobil`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `pemeriksa`
+--
+ALTER TABLE `pemeriksa`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `proses`
 --
 ALTER TABLE `proses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `status_mobil`
+--
+ALTER TABLE `status_mobil`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -254,25 +345,37 @@ ALTER TABLE `app_maintenance`
 -- AUTO_INCREMENT untuk tabel `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `mobil`
 --
 ALTER TABLE `mobil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `pemeriksa`
+--
+ALTER TABLE `pemeriksa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `proses`
 --
 ALTER TABLE `proses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `status_mobil`
+--
+ALTER TABLE `status_mobil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `transportasi`
 --
 ALTER TABLE `transportasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
