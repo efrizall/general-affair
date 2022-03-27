@@ -446,6 +446,16 @@ class Admin extends CI_Controller
         redirect('admin/pMaintenance');
     }
 
+    public function tHapus($id)
+    {
+        $this->Transportasi_model->hapusTransportasi($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus'
+        );
+        redirect('admin/pTransportasi');
+    }
+
     public function ttdM($id)
     {
         if ($this->role == 'admin') {
