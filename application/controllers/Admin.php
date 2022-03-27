@@ -446,12 +446,12 @@ class Admin extends CI_Controller
         redirect('admin/pMaintenance');
     }
 
-    public function ttd($id)
+    public function ttdM($id)
     {
         if ($this->role == 'admin') {
-            $this->Approval_model->ttdAvp($id);
+            $this->Approval_model->ttdAvp('maintenance', $id);
         } else {
-            $this->Approval_model->ttdPemeriksa($id);
+            $this->Approval_model->ttdPemeriksa('maintenance', $id);
         }
 
         $this->session->set_flashdata(
@@ -461,7 +461,7 @@ class Admin extends CI_Controller
         redirect('admin/pMaintenance');
     }
 
-    public function tolak($id)
+    public function tolakM($id)
     {
         if ($this->role == 'admin') {
             $this->Approval_model->tolakAvp($id);
@@ -474,5 +474,35 @@ class Admin extends CI_Controller
             'Permintaan tidak disetujui'
         );
         redirect('admin/pMaintenance');
+    }
+
+    public function ttdT($id)
+    {
+        if ($this->role == 'admin') {
+            $this->Approval_model->ttdAvp('transportasi', $id);
+        } else {
+            $this->Approval_model->ttdPemeriksa('transportasi', $id);
+        }
+
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan disetujui'
+        );
+        redirect('admin/pTransportasi');
+    }
+
+    public function tolakT($id)
+    {
+        if ($this->role == 'admin') {
+            $this->Approval_model->tolakAvp('transportasi', $id);
+        } else {
+            $this->Approval_model->tolakPemeriksa('transportasi', $id);
+        }
+
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan tidak disetujui'
+        );
+        redirect('admin/pTransportasi');
     }
 }
