@@ -5,6 +5,16 @@ class Transportasi_model extends CI_Model
     {
     }
 
+    public function selectMobil()
+    {
+        return $this->db->get("mobil")->result_array();
+    }
+
+    public function selectPemeriksa()
+    {
+        return $this->db->get("pemeriksa")->result_array();
+    }
+
     public function selectTransportasiId($id)
     {
         $this->db->select('*');
@@ -44,10 +54,15 @@ class Transportasi_model extends CI_Model
         $data = [
             'nama' => $this->input->post('nama', true),
             'divisi' => $this->input->post('divisi', true),
-            'permintaan' => $this->input->post('permintaan', true),
-            'keterangan' => $this->input->post('keterangan', true),
-            'tanggal' => $this->input->post('tanggal', true),
+            'tujuan' => $this->input->post('tujuan', true),
+            'keperluan' => $this->input->post('keperluan', true),
+            'tgl_pakai' => $this->input->post('tgl_pakai', true),
+            'tgl_kembali' => $this->input->post('tgl_kembali', true),
+            'jam_pakai' => $this->input->post('jam_pakai', true),
+            'jam_kembali' => $this->input->post('jam_kembali', true),
+            'mobil_id' => $this->input->post('mobil', true),
             'pemeriksa' => $this->input->post('pemeriksa', true),
+            'tanggal' => $this->input->post('tanggal', true),
         ];
         $this->db->where('id', $id);
         $this->db->update('transportasi', $data);

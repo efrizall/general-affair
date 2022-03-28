@@ -3,7 +3,7 @@
 
     <div class="card mb-4">
         <div class="card-header py-3">
-            <h3 class="m-0 text-primary">Edit</h3>
+            <h3 class="m-0 text-primary">Edit Permitaan Maintenance</h3>
         </div>
         <div class="card-body">
             <form action="" method="post">
@@ -33,10 +33,8 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="tgl_surat">Tanggal Permintaan</label>
+                        <label for="tanggal">Tanggal Permintaan</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $data['tanggal'] ?>">
-                        <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
