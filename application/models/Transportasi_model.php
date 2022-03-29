@@ -62,7 +62,7 @@ class Transportasi_model extends CI_Model
             'jam_kembali' => $this->input->post('jam_kembali', true),
             'mobil_id' => $this->input->post('mobil', true),
             'pemeriksa' => $this->input->post('pemeriksa', true),
-            'tanggal' => $this->input->post('tanggal', true),
+            'tanggal' => $this->input->post('tanggal', true)
         ];
         $this->db->where('id', $id);
         $this->db->update('transportasi', $data);
@@ -94,7 +94,7 @@ class Transportasi_model extends CI_Model
         $data = [
             'status' => $this->input->post('status', true)
         ];
-        $this->db->where('mobil_id', $id);
+        $this->db->where('id', $id);
         $this->db->update('transportasi', $data);
     }
 }

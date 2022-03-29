@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Maintenance_model');
+        $this->load->model('Ekspedisi_model');
         $this->load->model('Approval_model');
         $this->load->model('Transportasi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
@@ -72,7 +73,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/transportasi', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pEkspedisi()
@@ -80,7 +81,9 @@ class Admin extends CI_Controller
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
+        $data['data'] = $this->Ekspedisi_model->selectEkspedisi();
         $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -448,8 +451,8 @@ class Admin extends CI_Controller
             $this->Maintenance_model->updateProses($id); // Diupdate saja
         } else {
             $this->Maintenance_model->tambahProses($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+            $this->Maintenance_model->updateStatus($id);
         }
-        $this->Maintenance_model->updateStatus($id);
         $this->session->set_flashdata(
             'berhasil',
             'Proses diubah'
@@ -473,8 +476,8 @@ class Admin extends CI_Controller
             $this->Transportasi_model->updateStatus($id); // Diupdate saja
         } else {
             $this->Transportasi_model->tambahStatus($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+            $this->Transportasi_model->updateStatus($id);
         }
-        $this->Transportasi_model->updateStatus($id);
         $this->session->set_flashdata(
             'berhasil',
             'Status diubah'

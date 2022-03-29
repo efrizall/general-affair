@@ -81,7 +81,7 @@ $(document).ready(function () {
   });
 });
 
-// Urutan data maintenance
+// Urutan data
 $(document).ready(function() {
   $('#maintenance').DataTable( {
       "columnDefs" : [{"targets":0, "type":"date-eu"}],
@@ -91,3 +91,4 @@ $(document).ready(function() {
       "autoWidth": false
   } );
 } );
+
