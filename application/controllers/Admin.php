@@ -10,6 +10,7 @@ class Admin extends CI_Controller
         $this->load->model('Maintenance_model');
         $this->load->model('Ekspedisi_model');
         $this->load->model('Approval_model');
+        $this->load->model('User_model');
         $this->load->model('Transportasi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if ($this->role_id == 1) {
@@ -159,16 +160,52 @@ class Admin extends CI_Controller
 
     public function mUser()
     {
-        // $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Manajemen User";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['data'] = $this->User_model->selectUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('manajemen/user', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function tambahUser()
+    {
+        $data['title'] = "Manajemen User";
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
+        // Set Rules
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[user.nip]', array(
+            'required' => 'NIP harus diisi !',
+            'is_unique' => 'NIP sudah terdaftar'
+        ));
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', array(
+            'required' => 'Password harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus dipilih !'
+        ));
+
+        if($this->form_validation->run() == false){
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('manajemen/tambah_user', $data);
+            $this->load->view('templates/footer');
+        }else{
+            $this->User_model->tambahUser();
+            $this->session->set_flashdata(
+                'berhasil',
+                'User ditambahkan'
+            );
+            redirect('admin/mUser');
+        }
     }
 
     public function mMobil()
