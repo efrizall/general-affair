@@ -1,19 +1,25 @@
 <!-- Begin Page Content -->
 <div class="container-fluid" id="container">
-    <form action="" method="post" class="none-print">
+    <form action="<?= base_url('admin/rMaintenance') ?>" method="POST" class="none-print">
         <div class="row">
-            <div class="col-3"><p>Dari tanggal</p></div>
-            <div class="col-3"><p>Sampai</p></div>
+            <div class="col-3">
+                <p>Dari tanggal</p>
+            </div>
+            <div class="col-3">
+                <p>Sampai</p>
+            </div>
         </div>
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
-                <input type="date" class="form-control" name="mulai" id="mulai">
+                    <input type="date" class="form-control" name="mulai" id="mulai">
+                    <?= form_error('mulai', '<small class="text-danger">', '</small>') ?>
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
-                <input type="date" class="form-control" name="akhir" id="akhir">
+                    <input type="date" class="form-control" name="akhir" id="akhir">
+                    <?= form_error('akhir', '<small class="text-danger">', '</small>') ?>
                 </div>
             </div>
             <div class="col">
@@ -54,14 +60,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        foreach ($result as $row) {
+                            $tanggal = date_create($row['tanggal']);
+                        ?>
                             <tr>
-                                <td></td>
+                                <td><?= $row['tanggal'] ?></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td class="td"></td>
                             </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -12,6 +12,14 @@ class Maintenance_model extends CI_Model
         return $this->db->get_where("$table", ['id' => $id])->row_array();
     }
 
+    public function selectMaintenanceWhere($mulai, $akhir)
+    {
+        // $mulai = $this->input->post('mulai' . true);
+        // $akhir = $this->input->post('akhir' . true);
+        $query = $this->db->query("SELECT * FROM maintenance WHERE tanggal BETWEEN '$mulai' AND '$akhir'");
+        return $query->result_array();
+    }
+
     function selectMaintenance()
     {
         $this->db->select('*');

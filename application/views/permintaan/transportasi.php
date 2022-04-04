@@ -44,7 +44,7 @@
                                 <td>
                                     1. AVP Pelayanan Strategis SDM & Umum :<b>(<?= $row['ttd_avp'] ?>)</b>
                                     <br>
-                                    2. AVP Pengadaan : <b>(<?= $row['ttd_pemeriksa'] ?>)</b>
+                                    2. <?= $row['pemeriksa'] ?> : <b>(<?= $row['ttd_pemeriksa'] ?>)</b>
                                 </td>
                                 <td>
                                     <div class="dropdown">
