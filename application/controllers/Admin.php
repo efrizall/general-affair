@@ -107,6 +107,11 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('akhir', 'Akhir', 'required', array(
             'required' => 'Akhir harus diisi !'
         ));
+        
+        $mulai = $this->input->post('mulai', true);
+        $akhir = $this->input->post('akhir', true);
+        $tes = $this->input->post('tes');
+        $data['result'] = $this->Maintenance_model->selectMaintenanceWhere($mulai, $akhir);
 
         if ($this->form_validation->run() == false) {
             // $data['result'] = $this->Maintenance_model->selectMaintenanceWhere();
@@ -116,16 +121,11 @@ class Admin extends CI_Controller
             $this->load->view('rekap/maintenance', $data);
             $this->load->view('templates/footer');
         } else {
-            // $this->load->view('templates/header', $data);
-            // $this->load->view('templates/sidebar', $data);
-            // $this->load->view('templates/topbar', $data);
-            // $this->load->view('rekap/print_maintenance', $data);
-            // $this->load->view('templates/footer');
-            $mulai = $this->input->post('mulai' . true);
-            $akhir = $this->input->post('akhir' . true);
-            $data['result'] = $this->Maintenance_model->selectMaintenanceWhere($mulai, $akhir);
-            echo $mulai . $akhir;
-            echo 'tes';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('rekap/maintenance', $data);
+            $this->load->view('templates/footer');
         }
     }
 

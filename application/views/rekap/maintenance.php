@@ -1,6 +1,46 @@
+<style>
+    @media print{
+        .none-print{
+            display:none;
+        }
+        
+        .judul{
+            text-align:center;
+            margin-bottom:30px;
+        }
+        
+        .table{
+            border-top:1px solid black;
+            color: black;
+        }
+        
+        .td{
+            border-right: 1px solid black;
+        }
+        
+        td{
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            padding: 10px;
+            color: black;
+        }
+
+        tr{
+            border-bottom: 1px solid black;
+        }
+        
+        th{
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            padding: 10px;
+            color: black;
+        }
+    }
+</style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid" id="container">
-    <form action="<?= base_url('admin/rMaintenance') ?>" method="POST" class="none-print">
+    <form action="<?= base_url('admin/rMaintenance') ?>" method="post" class="none-print">
         <div class="row">
             <div class="col-3">
                 <p>Dari tanggal</p>
@@ -28,7 +68,6 @@
         </div>
     </form>
 
-
     <!-- Page Heading -->
     <div class="row none-print">
         <div class="col">
@@ -51,11 +90,11 @@
                 <table class="table table-striped display" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tanggal Permintaan</th>
-                            <th>Nomor Permintaan</th>
-                            <th>Nama</th>
-                            <th>Divisi</th>
-                            <th>Permintaan Layanan</th>
+                            <th class="td">Tanggal Permintaan</th>
+                            <th class="td">Nomor Permintaan</th>
+                            <th class="td">Nama</th>
+                            <th class="td">Divisi</th>
+                            <th class="td">Permintaan Layanan</th>
                             <th class="td">Keterangan Atau Barang</th>
                         </tr>
                     </thead>
@@ -65,12 +104,12 @@
                             $tanggal = date_create($row['tanggal']);
                         ?>
                             <tr>
-                                <td><?= $row['tanggal'] ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="td"></td>
+                                <td><?= date_format($tanggal, "d-m-Y") ?></td>
+                                <td><?= $row['id'] ?>/FPL/RNI/<?= date_format($tanggal, "m/Y") ?></td>
+                                <td><?= $row['nama'] ?></td>
+                                <td><?= $row['divisi'] ?></td>
+                                <td><?= $row['permintaan'] ?></td>
+                                <td class="td"><?= $row['keterangan'] ?></td>
                             </tr>
                         <?php
                         }
