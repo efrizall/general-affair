@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 27 Mar 2022 pada 18.56
+-- Waktu pembuatan: 04 Apr 2022 pada 09.33
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -58,6 +58,37 @@ CREATE TABLE `app_transportasi` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `ekspedisi`
+--
+
+CREATE TABLE `ekspedisi` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `tujuan` varchar(255) NOT NULL,
+  `sifat` varchar(100) NOT NULL,
+  `no_resi` int(11) NOT NULL,
+  `divisi` varchar(100) NOT NULL,
+  `pemeriksa` varchar(100) NOT NULL,
+  `tgl_surat` date NOT NULL,
+  `tgl_diterima` date NOT NULL,
+  `no_surat` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `ttd_avp` varchar(100) NOT NULL,
+  `ttd_pemeriksa` varchar(100) NOT NULL,
+  `catatan` varchar(255) NOT NULL,
+  `file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ekspedisi`
+--
+
+INSERT INTO `ekspedisi` (`id`, `nama`, `tujuan`, `sifat`, `no_resi`, `divisi`, `pemeriksa`, `tgl_surat`, `tgl_diterima`, `no_surat`, `user_id`, `ttd_avp`, `ttd_pemeriksa`, `catatan`, `file`) VALUES
+(1, 'efrizal', 'alksdjlkasj', 'lkasdlk', 123123, 'asdasdasdasd', 'asdasd', '2022-03-30', '2022-03-30', 123123, 1, 'belum', 'belum', 'idak', 'tidak ada');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `maintenance`
 --
 
@@ -82,7 +113,9 @@ CREATE TABLE `maintenance` (
 
 INSERT INTO `maintenance` (`id`, `nama`, `divisi`, `permintaan`, `keterangan`, `status`, `tanggal`, `pemeriksa`, `file`, `user_id`, `ttd_avp`, `ttd_pemeriksa`) VALUES
 (28, 'tes edit', 'tes', 'tes', 'tes', 'Sedang diproses', '2022-03-31', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui'),
-(29, 'Yudi Juni Ardiasd', 'divivivivi edit', 'isisisi', '', 'Sedang diproses', '2022-03-25', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui');
+(29, 'Yudi Juni Ardiasd edit', 'divivivivi edit', 'isisisi', '', 'Selesai', '2022-03-25', 'AVP Strategi & Sinergi Aset', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui'),
+(31, 'tes proses', 'proses', 'proses', 'proses', 'Sedang diproses', '2022-03-29', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Belum Disetujui', 'Belum Disetujui'),
+(32, 'proses lagi', 'proses', 'proses', 'proses', 'Sedang diproses', '2022-03-29', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Belum Disetujui', 'Belum Disetujui');
 
 -- --------------------------------------------------------
 
@@ -166,8 +199,10 @@ INSERT INTO `proses` (`id`, `nama`, `divisi`, `catatan`, `status`, `maintenance_
 (3, 'tes', 'tes', 'tess', 'tes', 17, '2022-03-25 10:42:15'),
 (6, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 18, '2022-03-25 04:53:58'),
 (7, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 28, '2022-03-25 21:47:40'),
-(8, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 29, '2022-03-27 15:33:53'),
-(9, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 30, '2022-03-26 22:04:21');
+(8, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 29, '2022-03-29 09:25:24'),
+(9, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 30, '2022-03-26 22:04:21'),
+(10, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 31, '2022-03-29 04:43:46'),
+(11, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 32, '2022-03-29 04:46:22');
 
 -- --------------------------------------------------------
 
@@ -191,7 +226,11 @@ CREATE TABLE `status_mobil` (
 
 INSERT INTO `status_mobil` (`id`, `nama`, `divisi`, `catatan`, `status`, `transportasi_id`, `update_at`) VALUES
 (1, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 1, '2022-03-27 11:27:22'),
-(2, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 2, '2022-03-27 11:33:32');
+(2, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 2, '2022-03-27 11:33:32'),
+(3, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 3, '2022-03-28 09:06:09'),
+(4, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 4, '2022-03-29 01:40:39'),
+(5, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 5, '2022-03-29 01:46:03'),
+(7, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sudah dikembalikan', 6, '2022-03-29 04:51:47');
 
 -- --------------------------------------------------------
 
@@ -224,7 +263,10 @@ CREATE TABLE `transportasi` (
 --
 
 INSERT INTO `transportasi` (`id`, `nama`, `divisi`, `mobil_id`, `tujuan`, `keperluan`, `tgl_pakai`, `tgl_kembali`, `jam_pakai`, `jam_kembali`, `pemeriksa`, `ttd_avp`, `ttd_pemeriksa`, `status`, `tanggal`, `file`, `user_id`) VALUES
-(2, 'Efrizal', 'SDM', 2, 'GBK', 'Lari pagi', '2022-03-27', '2022-03-27', '10:28:00', '10:28:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-27', 'Tidak ada', 5);
+(2, 'Efrizal', 'SDM', 2, 'GBK', 'Lari pagi', '2022-03-27', '2022-03-27', '10:28:00', '10:28:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-27', 'Tidak ada', 5),
+(4, 'tes edit lagi', 'tes edit', 1, 'tujuan', 'keperluan', '2022-03-28', '2022-03-28', '22:33:00', '22:33:00', 'AVP Strategi & Sinergi Aset', 'Belum Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-28', 'Tidak ada', 5),
+(5, 'status', 'divisi', 2, 'status', 'sksksks', '2022-03-29', '2022-03-29', '13:45:00', '13:45:00', 'AVP Strategi & Sinergi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-29', 'Tidak ada', 5),
+(7, 'testing', 'testing', 4, 'testing', 'testing', '2022-04-03', '2022-04-03', '08:01:00', '15:34:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Belum Dikembalikan', '2022-04-03', 'Tidak ada', 5);
 
 -- --------------------------------------------------------
 
@@ -281,6 +323,12 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 -- Indeks untuk tabel `app_maintenance`
 --
 ALTER TABLE `app_maintenance`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `ekspedisi`
+--
+ALTER TABLE `ekspedisi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -342,10 +390,16 @@ ALTER TABLE `app_maintenance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `ekspedisi`
+--
+ALTER TABLE `ekspedisi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `mobil`
@@ -363,19 +417,19 @@ ALTER TABLE `pemeriksa`
 -- AUTO_INCREMENT untuk tabel `proses`
 --
 ALTER TABLE `proses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_mobil`
 --
 ALTER TABLE `status_mobil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `transportasi`
 --
 ALTER TABLE `transportasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
