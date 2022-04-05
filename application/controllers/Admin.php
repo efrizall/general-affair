@@ -604,12 +604,8 @@ class Admin extends CI_Controller
 
     public function ttdM($id)
     {
-        if ($this->role == 'admin') {
-            $this->Approval_model->ttdAvp('maintenance', $id);
-        } else {
-            $this->Approval_model->ttdPemeriksa('maintenance', $id);
-        }
-
+        $this->Approval_model->ttdAvp('maintenance', $id);
+        
         $this->session->set_flashdata(
             'berhasil',
             'Permintaan disetujui'
@@ -619,11 +615,7 @@ class Admin extends CI_Controller
 
     public function tolakM($id)
     {
-        if ($this->role == 'admin') {
-            $this->Approval_model->tolakAvp($id);
-        } else {
-            $this->Approval_model->tolakPemeriksa($id);
-        }
+        $this->Approval_model->tolakAvp('maintenance', $id);
 
         $this->session->set_flashdata(
             'berhasil',

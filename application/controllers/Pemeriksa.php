@@ -8,6 +8,10 @@ class Pemeriksa extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Maintenance_model');
+        $this->load->model('Ekspedisi_model');
+        $this->load->model('Approval_model');
+        $this->load->model('User_model');
+        $this->load->model('Transportasi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if($this->role_id == 1){
             $this->role = 'admin';
@@ -90,7 +94,7 @@ class Pemeriksa extends CI_Controller
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
-        $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['data'] = $this->Maintenance_model->selectId('maintenance', $id);
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
@@ -236,5 +240,27 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/edit_e', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function ttdM($id)
+    {
+        $this->Approval_model->ttdPemeriksa('maintenance', $id);
+
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan disetujui'
+        );
+        redirect('pemeriksa/pMaintenance');
+    }
+
+    public function tolakM($id)
+    {
+        $this->Approval_model->tolakPemeriksa('maintenance', $id);
+
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan tidak disetujui'
+        );
+        redirect('pemeriksa/pMaintenance');
     }
 }
