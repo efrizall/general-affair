@@ -18,4 +18,26 @@ class User_model extends CI_Model
 
         $this->db->insert('user', $data);
     }
+
+    public function selectUserId($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
+
+    public function editUser($id)
+    {
+        $data = [
+            'nip' => $this->input->post('nip', true),
+            'name' => $this->input->post('nama', true),
+            'divisi' => $this->input->post('divisi', true),
+            'password' => $this->input->post('password', true),
+            'role_id' => $this->input->post('role', true)
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('user', $data);
+    }
 }

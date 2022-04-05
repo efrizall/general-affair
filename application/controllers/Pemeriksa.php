@@ -47,7 +47,7 @@ class Pemeriksa extends CI_Controller
         // $logged = $this->session->userdata('logged');
 
         $data['title'] = "Maintenance";
-        $data['data'] = $this->Maintenance_model->select();
+        $data['data'] = $this->Maintenance_model->select('maintenance');
         $data['role_id'] = $role_id;
         $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();

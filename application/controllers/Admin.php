@@ -208,6 +208,43 @@ class Admin extends CI_Controller
         }
     }
 
+    public function editUser($id)
+    {
+        $data['title'] = "Manajemen User";
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['data'] = $this->User_model->selectUserId($id);
+
+        // Set Rules
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim', array(
+            'required' => 'NIP harus diisi !'
+        ));
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', array(
+            'required' => 'Password harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus dipilih !'
+        ));
+
+        if($this->form_validation->run() == false){
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('manajemen/edit_user', $data);
+            $this->load->view('templates/footer');
+        }else{
+            $this->User_model->editUser($id);
+            $this->session->set_flashdata(
+                'berhasil',
+                'User diubah'
+            );
+            redirect('admin/mUser');
+        }
+    }
+
     public function mMobil()
     {
         // $role_id = $this->session->userdata('role_id');
