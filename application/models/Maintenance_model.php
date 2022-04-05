@@ -40,7 +40,7 @@ class Maintenance_model extends CI_Model
             'tanggal' => $this->input->post('tanggal', true),
             'pemeriksa' => $this->input->post('pemeriksa', true),
             'file' => 'Tidak ada',
-            'user_id' => 1,
+            'user_id' => $this->input->post('id', true),
             'ttd_avp' => 'Belum Disetujui',
             'ttd_pemeriksa' => 'Belum Disetujui'
         ];

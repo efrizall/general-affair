@@ -160,7 +160,7 @@ class Pemeriksa extends CI_Controller
             $this->load->view('templates/footer');
         }else{
             $id = $this->session->userdata('id');
-            $this->Maintenance_model->tambahMaintenance($id);
+            $this->Maintenance_model->tambahMaintenance();
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan');

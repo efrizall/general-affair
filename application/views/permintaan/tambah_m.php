@@ -8,6 +8,7 @@
         <div class="card-body">
             <form action="" method="post">
                 <div class="row">
+                    <input type="text" class="form-control" name="id" id="id" value="<?= $user['id'] ?>" hidden>
                     <div class="col">
                         <label class="" for="nama">Nama</label>
                         <input type="text" class="form-control" name="nama" id="nama">
