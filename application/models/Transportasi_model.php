@@ -3,6 +3,7 @@ class Transportasi_model extends CI_Model
 {
     public function selectTransportasi()
     {
+        return $this->db->get("transportasi")->result_array();
     }
 
     public function selectMobil()

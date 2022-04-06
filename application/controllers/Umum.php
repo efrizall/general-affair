@@ -60,10 +60,10 @@ class Umum extends CI_Controller
     }
 
     public function pTransportasi(){
-        $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Transportasi";
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Transportasi_model->selectTransportasi();
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -73,10 +73,10 @@ class Umum extends CI_Controller
     }
 
     public function pEkspedisi(){
-        $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Ekspedisi";
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Ekspedisi_model->selectEkspedisi();
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
