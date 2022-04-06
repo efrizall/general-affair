@@ -48,8 +48,6 @@ class Pemeriksa extends CI_Controller
 
     public function pMaintenance(){
         $role_id = $this->session->userdata('role_id');
-        // $logged = $this->session->userdata('logged');
-
         $data['title'] = "Maintenance";
         $data['data'] = $this->Maintenance_model->select('maintenance');
         $data['role_id'] = $role_id;
@@ -266,6 +264,16 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/edit_e', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function mHapus($id)
+    {
+        $this->Maintenance_model->hapusMaintenance($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus'
+        );
+        redirect('pemeriksa/pMaintenance');
     }
 
     public function ttdM($id)

@@ -95,7 +95,7 @@
                                                 <li><a class="dropdown-item" href="<?= base_url("staff/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href="" id="hapus"><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                                 <li>
-                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#prosesStaff" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button>
+                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#proses" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button>
                                                 </li>
                                                 <?php
                                                 if($row['user_id'] == $user['id']){

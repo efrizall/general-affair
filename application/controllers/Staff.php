@@ -4,6 +4,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Staff extends CI_Controller
 {
 
+    var $role_id, $role;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Maintenance_model');
+        $this->load->model('Ekspedisi_model');
+        $this->load->model('Approval_model');
+        $this->load->model('User_model');
+        $this->load->model('Transportasi_model');
+        $this->role_id = $this->session->userdata('role_id'); //For role id
+        if($this->role_id == 1){
+            $this->role = 'admin';
+        }elseif($this->role_id == 2){
+            $this->role = 'pemeriksa';
+        }elseif($this->role_id == 3){
+            $this->role = 'staff';
+        }else{
+            $this->role = 'umum';
+        }
+    }
+
     public function index()
     {
         $role_id = $this->session->userdata('role_id');
@@ -26,10 +47,10 @@ class Staff extends CI_Controller
     }
 
     public function pMaintenance(){
-        $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Maintenance";
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Maintenance_model->select('maintenance');
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -103,29 +124,97 @@ class Staff extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function mUser(){
-        $role_id = $this->session->userdata('role_id');
+    public function mTambah()
+    {
+        // $role_id = $this->session->userdata('role_id');
 
-        $data['title'] = "Manajemen User";
-        $data['role_id'] = $role_id;
+        $data['title'] = "Tambah Maintenance";
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
+
+        // Set Rules
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus diisi !'
+        ));
+        $this->form_validation->set_rules('permintaan', 'Permintaan', 'required', array(
+            'required' => 'Permintaan harus diisi !'
+        ));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required', array(
+            'required' => 'Tanggal harus diisi !'
+        ));
+        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
+            'required' => 'Pemeriksa harus dipilih !'
+        ));
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('permintaan/tambah_m', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Maintenance_model->tambahMaintenance();
+            $this->session->set_flashdata(
+                'berhasil',
+                'Permintaan ditambahkan'
+            );
+            redirect('staff/pMaintenance');
+        }
+    }
+
+    public function mDetail($id)
+    {
+        $data['title'] = "Detail";
+        $data['data'] = $this->Maintenance_model->selectId('maintenance', $id);
+        $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('manajemen/user', $data);
+        $this->load->view('permintaan/detail_m', $data);
         $this->load->view('templates/footer');
     }
 
-    public function mMobil(){
-        $role_id = $this->session->userdata('role_id');
+    public function tambahProses()
+    {
+        $nama = $this->session->userdata('nama');
+        $divisi = $this->session->userdata('divisi');
+        $id = $this->input->post('id');
 
-        $data['title'] = "Manajemen Mobil";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('manajemen/mobil', $data);
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('status', 'Status', 'required', array(
+            'required' => 'Status harus diubah !'
+        ));
+
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata(
+                'Gagal',
+                'Proses diubah'
+            );
+            redirect('staff/pMaintenance');
+        }else{
+            $this->Maintenance_model->updateStatus($id);
+            $this->session->set_flashdata(
+                'berhasil',
+                'Proses diubah'
+            );
+            redirect('staff/pMaintenance');
+        }
+
+        // Jika catatan proses ada maka..
+        // $cek_proses = $this->db->get_where('proses', ['maintenance_id' => $id])->row_array();
+        // if ($cek_proses) {
+        //     $this->Maintenance_model->updateProses($id); // Diupdate saja
+        // } else {
+        //     $this->Maintenance_model->tambahProses($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+        //     $this->Maintenance_model->updateStatus($id);
+        // }
+        // $this->session->set_flashdata(
+        //     'berhasil',
+        //     'Proses diubah'
+        // );
+        // redirect('staff/pMaintenance');
     }
 }

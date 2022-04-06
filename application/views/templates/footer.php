@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<!-- Proses Modal -->
+<!-- Proses Modal Admin -->
 <div class="modal fade" id="proses" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -50,7 +50,39 @@
             </div>
             <form action="<?= base_url('admin/tambahProses') ?>" method="post">
                 <div class="modal-body">
-                    <input type="text" hidden id="id" name="id" value="">
+                    <input type="text" id="id" name="id" value="">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option selected disabled>Belum diproses</option>
+                            <option value="Sedang diproses">Sedang diproses</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                    </div>
+                    <?= form_error('status', '<small class="text-danger">', '</small>') ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Proses Modal Staff -->
+<div class="modal fade" id="prosesStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proses">Ubah Proses</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="<?= base_url('staff/tambahProses') ?>" method="post">
+                <div class="modal-body">
+                    <input type="text" id="id" name="id" value="">
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">

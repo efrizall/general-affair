@@ -47,8 +47,6 @@ class Admin extends CI_Controller
 
     public function pMaintenance()
     {
-        // $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Maintenance";
         $data['data'] = $this->Maintenance_model->select('maintenance');
         $data['role_id'] = $this->role_id;
@@ -57,7 +55,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('permintaan/maintenance', $data);
+        $this->load->view('admin/permintaan/maintenance', $data);
         $this->load->view('templates/footer');
     }
 
@@ -542,19 +540,31 @@ class Admin extends CI_Controller
             'required' => 'Status harus diubah !'
         ));
 
-        // Jika catatan proses ada maka..
-        $cek_proses = $this->db->get_where('proses', ['maintenance_id' => $id])->row_array();
-        if ($cek_proses) {
-            $this->Maintenance_model->updateProses($id); // Diupdate saja
-        } else {
-            $this->Maintenance_model->tambahProses($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata(
+                'Gagal',
+                'Proses diubah'
+            );
+            redirect('admin/pMaintenance');
+        }else{
             $this->Maintenance_model->updateStatus($id);
+            $this->session->set_flashdata(
+                'berhasil',
+                'Proses diubah'
+            );
+            redirect('admin/pMaintenance');
         }
-        $this->session->set_flashdata(
-            'berhasil',
-            'Proses diubah'
-        );
-        redirect('admin/pMaintenance');
+
+        // Jika catatan proses ada maka..
+        // $cek_proses = $this->db->get_where('proses', ['maintenance_id' => $id])->row_array();
+        // if ($cek_proses) {
+        //     $this->Maintenance_model->updateProses($id); // Diupdate saja
+        //     echo 'ada';
+        // } else {
+        //     $this->Maintenance_model->tambahProses($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+        //     $this->Maintenance_model->updateStatus($id);
+        //     echo 'tidak ada';
+        // }
     }
 
     public function tambahStatus()

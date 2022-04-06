@@ -9,23 +9,23 @@
 // }
 
 // Swal Hapus
-$(".tombol-hapus").on("click", function(e) {
+$(".tombol-hapus").on("click", function (e) {
   e.preventDefault(); //menghilangkan aksi default
   const href = $(this).attr("href");
   Swal.fire({
-      title: "Yakin ingin menghapus?",
-      text: "Data ini tidak bisa dikembalikan lagi!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yakin, hapus!",
+    title: "Yakin ingin menghapus?",
+    text: "Data ini tidak bisa dikembalikan lagi!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yakin, hapus!",
   }).then((result) => {
-      if (result.isConfirmed) {
-          document.location.href = href; //Memindahkan halaman ke href tombol
-      } else {
-          console.log("tes");
-      }
+    if (result.isConfirmed) {
+      document.location.href = href; //Memindahkan halaman ke href tombol
+    } else {
+      console.log("tes");
+    }
   });
 });
 
@@ -44,7 +44,7 @@ $(".tombol-setuju").on("click", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // console.log(href);
-        document.location.href = href; //Memindahkan halaman ke href tombol
+      document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });
 });
@@ -64,12 +64,12 @@ $(".tombol-tolak").on("click", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       console.log(href);
-        document.location.href = href; //Memindahkan halaman ke href tombol
+      document.location.href = href; //Memindahkan halaman ke href tombol
     }
   });
 });
 
-// Ubah proses
+// Ubah proses admin
 $(document).ready(function () {
   // Untuk sunting
   $("#proses").on("show.bs.modal", function (event) {
@@ -81,14 +81,23 @@ $(document).ready(function () {
   });
 });
 
-// Urutan data
-$(document).ready(function() {
-  $('#maintenance').DataTable( {
-      "columnDefs" : [{"targets":0, "type":"date-eu"}],
-      "order": [
-          [1, "desc"]
-      ],
-      "autoWidth": false
-  } );
-} );
+// // Ubah proses staff
+$(document).ready(function () {
+  // Untuk sunting
+  $("#prosesStaff").on("show.bs.modal", function (event) {
+    var div = $(event.relatedTarget); // Tombol dimana modal di tampilkan
+    var modal = $(this);
 
+    // Isi nilai pada field
+    modal.find("#id").attr("value", div.data("id"));
+  });
+});
+
+// Urutan data
+$(document).ready(function () {
+  $("#maintenance").DataTable({
+    columnDefs: [{ targets: 0, type: "date-eu" }],
+    order: [[1, "desc"]],
+    autoWidth: false,
+  });
+});
