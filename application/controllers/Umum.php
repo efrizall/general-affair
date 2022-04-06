@@ -8,6 +8,10 @@ class Umum extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Maintenance_model');
+        $this->load->model('Ekspedisi_model');
+        $this->load->model('Approval_model');
+        $this->load->model('User_model');
+        $this->load->model('Transportasi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if($this->role_id == 1){
             $this->role = 'admin';
@@ -28,7 +32,8 @@ class Umum extends CI_Controller
         if($role_id == 4 && $logged){
             $data['title'] = "Dashboard";
             $data['role_id'] = $role_id;
-            $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();    
+            $data['role'] = $this->role;
+            $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();    
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -42,11 +47,11 @@ class Umum extends CI_Controller
     }
 
     public function pMaintenance(){
-        $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Maintenance";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['data'] = $this->Maintenance_model->select('maintenance');
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -59,7 +64,7 @@ class Umum extends CI_Controller
 
         $data['title'] = "Transportasi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -72,76 +77,11 @@ class Umum extends CI_Controller
 
         $data['title'] = "Ekspedisi";
         $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/ekspedisi', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function rMaintenance(){
-        $role_id = $this->session->userdata('role_id');
-
-        $data['title'] = "Maintenance";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('rekap/maintenance', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function rTransportasi(){
-        $role_id = $this->session->userdata('role_id');
-
-        $data['title'] = "Transportasi";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('rekap/transportasi', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function rEkspedisi(){
-        $role_id = $this->session->userdata('role_id');
-
-        $data['title'] = "Ekspedisi";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('rekap/ekspedisi', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function mUser(){
-        $role_id = $this->session->userdata('role_id');
-
-        $data['title'] = "Manajemen User";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('manajemen/user', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function mMobil(){
-        $role_id = $this->session->userdata('role_id');
-
-        $data['title'] = "Manajemen Mobil";
-        $data['role_id'] = $role_id;
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('manajemen/mobil', $data);
         $this->load->view('templates/footer');
     }
 
@@ -181,7 +121,7 @@ class Umum extends CI_Controller
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan');
-            redirect('pemeriksa/pMaintenance');
+            redirect('umum/pMaintenance');
         }
     }
 }
