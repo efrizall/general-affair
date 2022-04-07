@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 04 Apr 2022 pada 09.33
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.2
+-- Waktu pembuatan: 07 Apr 2022 pada 03.43
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -112,10 +111,7 @@ CREATE TABLE `maintenance` (
 --
 
 INSERT INTO `maintenance` (`id`, `nama`, `divisi`, `permintaan`, `keterangan`, `status`, `tanggal`, `pemeriksa`, `file`, `user_id`, `ttd_avp`, `ttd_pemeriksa`) VALUES
-(28, 'tes edit', 'tes', 'tes', 'tes', 'Sedang diproses', '2022-03-31', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui'),
-(29, 'Yudi Juni Ardiasd edit', 'divivivivi edit', 'isisisi', '', 'Selesai', '2022-03-25', 'AVP Strategi & Sinergi Aset', 'Tidak ada', 1, 'Tidak Disetujui', 'Belum Disetujui'),
-(31, 'tes proses', 'proses', 'proses', 'proses', 'Sedang diproses', '2022-03-29', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Belum Disetujui', 'Belum Disetujui'),
-(32, 'proses lagi', 'proses', 'proses', 'proses', 'Sedang diproses', '2022-03-29', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 1, 'Belum Disetujui', 'Belum Disetujui');
+(38, 'Masayu Olivia Nurjanah', 'SDM', 'permintaan', 'barang', 'Sedang diproses', '2022-04-06', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 13, 'Disetujui', 'Disetujui');
 
 -- --------------------------------------------------------
 
@@ -201,8 +197,11 @@ INSERT INTO `proses` (`id`, `nama`, `divisi`, `catatan`, `status`, `maintenance_
 (7, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 28, '2022-03-25 21:47:40'),
 (8, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 29, '2022-03-29 09:25:24'),
 (9, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 30, '2022-03-26 22:04:21'),
-(10, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 31, '2022-03-29 04:43:46'),
-(11, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 32, '2022-03-29 04:46:22');
+(10, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 31, '2022-04-06 03:06:05'),
+(11, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '', 'Sedang diproses', 32, '2022-03-29 04:46:22'),
+(12, 'Nani Indriyani', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 33, '2022-04-06 03:03:51'),
+(13, 'Achmad Mashuri', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 35, '2022-04-06 03:03:16'),
+(14, 'Achmad Mashuri', 'Pelayanan Strategis SDM & Umum', '', 'Selesai', 0, '2022-04-05 21:47:16');
 
 -- --------------------------------------------------------
 
@@ -281,7 +280,7 @@ CREATE TABLE `user` (
   `divisi` varchar(100) NOT NULL,
   `password` varchar(256) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `date_created` int(11) NOT NULL
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -289,10 +288,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `name`, `divisi`, `password`, `role_id`, `date_created`) VALUES
-(5, 121, 'Muhajir', 'Pelayanan Strategis SDM & Umum', 'admin', 1, 1636385130),
-(6, 122, 'Nani Indriyani', 'IT', 'pemeriksa', 2, 1636815445),
-(7, 123, 'Achmad Mashuri', 'Pelayanan Strategis SDM & Umum', 'staff', 3, 20220318),
-(8, 124, 'Masayu Olivia Nurjanah', 'Pelayanan Strategis SDM & Umum', 'umum', 4, 20220318);
+(9, 125, 'testing edit', 'Pelayanan Strategis SDM & Umum', 'efrizal', 1, '2022-04-05 10:56:18'),
+(10, 121, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '$2y$10$R7YAyw.iTS4j4tiDegI/4ehRIW8J1hMdXqpliLHVyNB1XjvXFNv86', 1, '2022-04-04 10:54:53'),
+(11, 122, 'Nani Indriyani', 'Pelayanan Strategis SDM & Umum', '$2y$10$N25PdY9u2vgG3VN/eKnAr.KB2teThqJ8mwCb3tu9F0IwzSs.Dh8N2', 2, '2022-04-04 10:55:52'),
+(12, 123, 'Achmad Mashuri', 'Pelayanan Strategis SDM & Umum', '$2y$10$iZMwGcTbCnxAbx7Envy3AebuqYodLQJWjohJhg1z07tvrWd788nOK', 3, '2022-04-04 10:56:30'),
+(13, 124, 'Masayu Olivia Nurjanah', 'Pelayanan Strategis SDM & Umum', '$2y$10$nzwPFMBakt2xaX/4bCXXCuLugijzxV/xmzXc6ZjYpJHCDmNCwpvdO', 4, '2022-04-04 10:57:09');
 
 -- --------------------------------------------------------
 
@@ -399,7 +399,7 @@ ALTER TABLE `ekspedisi`
 -- AUTO_INCREMENT untuk tabel `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `mobil`
@@ -417,7 +417,7 @@ ALTER TABLE `pemeriksa`
 -- AUTO_INCREMENT untuk tabel `proses`
 --
 ALTER TABLE `proses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_mobil`
@@ -435,7 +435,7 @@ ALTER TABLE `transportasi`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
