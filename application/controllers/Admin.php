@@ -562,7 +562,7 @@ class Admin extends CI_Controller
                 'berhasil',
                 'Permintaan diupdate'
             );
-            redirect('admin/pMaintenance');
+            redirect('admin/pEkspedisi');
         }
     }
 
