@@ -40,9 +40,11 @@ class Ekspedisi_model extends CI_Model
         $data = [
             'nama' => $this->input->post('nama', true),
             'divisi' => $this->input->post('divisi', true),
-            'permintaan' => $this->input->post('permintaan', true),
-            'keterangan' => $this->input->post('keterangan', true),
-            'tanggal' => $this->input->post('tanggal', true),
+            'tujuan' => $this->input->post('tujuan', true),
+            'sifat' => $this->input->post('sifat', true),
+            'no_surat' => $this->input->post('nosurat', true),
+            'no_resi' => $this->input->post('noresi', true),
+            'tgl_surat' => $this->input->post('tanggal', true),
             'pemeriksa' => $this->input->post('pemeriksa', true),
         ];
         $this->db->where('id', $id);

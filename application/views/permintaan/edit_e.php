@@ -10,47 +10,49 @@
                 <div class="row">
                     <div class="col">
                         <label class="" for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Efrizal">
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="<?= $data['nama'] ?>">
                         <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
                         <label class="" for="divisi">Divisi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi" placeholder="Akuntansi">
+                        <input type="text" class="form-control" name="divisi" id="divisi" placeholder="<?= $data['divisi'] ?>">
                         <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label class="" for="permintaan">Tujuan Pengiriman</label>
-                        <input type="text" class="form-control" name="permintaan" id="permintaan" placeholder="Rajawali Nusindo">
-                        <?= form_error('permintaan', '<small class="text-danger">', '</small>') ?>
+                        <label class="" for="tujuan">Tujuan Pengiriman</label>
+                        <input type="text" class="form-control" name="tujuan" id="tujuan" placeholder="<?= $data['tujuan'] ?>">
+                        <?= form_error('tujuan', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
-                        <label for="tgl_surat">Sifat Dokumen</label>
+                        <label for="sifat">Sifat Dokumen</label>
                         <select name="sifat" id="sifat" class="custom-select">
-                            <option value="" selected disabled>Urgent - Kirim Langsung</option>
+                            <option value="" selected disabled>Pilih Sifat Dokumen</option>
+                            <option value="Urgent - Kirim Langsung">Urgent - Kirim Langsung</option>
+                            <option value="Biasa - Ekspedisi">Biasa - Ekspedisi</option>
                         </select>
                         <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
-                        <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
+                        <?= form_error('sifat', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label class="" for="nama">No. Surat</label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="123456">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                        <label class="" for="nosurat">No. Surat</label>
+                        <input type="text" class="form-control" name="nosurat" id="nosurat" placeholder="<?= $data['no_surat'] ?>">
+                        <?= form_error('nosurat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
-                        <label class="" for="divisi">No. Resi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi" placeholder="8172948971874">
-                        <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
+                        <label class="" for="noresi">No. Resi</label>
+                        <input type="text" class="form-control" name="noresi" id="noresi" placeholder="<?= $data['no_resi'] ?>">
+                        <?= form_error('noresi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="tgl_surat">Tanggal Permintaan</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        <label for="tanggal">Tanggal Permintaan</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $data['tgl_surat'] ?>">
                         <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
@@ -58,7 +60,7 @@
                     <div class="col">
                         <label class="" for="pemeriksa">Pemeriksa</label>
                         <select name="pemeriksa" id="pemeriksa" class="custom-select">
-                            <option selected disabled value="">AVP Pengadaan</option>
+                            <option selected disabled value="">Pilih Pemeriksa</option>
                             <option value="AVP Pendukung Direksi & Kesekretariatan">
                                 <b>AVP Pendukung Direksi & Kesekretariatan</b>
                             </option>
