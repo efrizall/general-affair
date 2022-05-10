@@ -283,12 +283,12 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function eDetail()
+    public function eDetail($id)
     {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
-        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['data'] = $this->Ekspedisi_model->selectEkspedisiId($id);
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);

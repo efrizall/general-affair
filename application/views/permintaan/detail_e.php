@@ -19,47 +19,48 @@
             <div class="row">
                 <div class="col-md-3"><b>Nomor</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">72/FE/RNI/02/2022</div>
+                <?php $tanggal = date_create($data['tgl_surat']) ?>
+                <div class="col-md-8"><?= $data['id'] ?>/FE/RNI/<?= date_format($tanggal, "m/Y") ?></div>
             </div>  
             <div class="row mt-3">
                 <div class="col-md-3"><b>Nama</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">Efrizal</div>
+                <div class="col-md-8"><?= $data['nama'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Divisi</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">Akuntansi</div>
+                <div class="col-md-8"><?= $data['divisi'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Tujuan Pengiriman</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">Rajawali Nusindo</div>
+                <div class="col-md-8"><?= $data['tujuan'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>No.Surat</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">123456</div>
+                <div class="col-md-8"><?= $data['no_surat'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>No. Resi</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">8172948971874</div>
+                <div class="col-md-8"><?= $data['no_resi'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Sifat Dokumen</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">Urgent - Kirim Langsung</div>
+                <div class="col-md-8"><?= $data['sifat'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Pemeriksa Permintaan</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">AVP Pengadaan</div>
+                <div class="col-md-8"><?= $data['pemeriksa'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>Tanggal Permintaan</b> </div>
                 <div class="col-md-1 d-none d-md-block">:</div>
-                <div class="col-md-8">2022-03-19</div>
+                <div class="col-md-8"><?= $data['tgl_surat'] ?></div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3"><b>File</b> </div>

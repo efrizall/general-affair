@@ -8,6 +8,7 @@ class Ekspedisi_model extends CI_Model
 
     public function selectEkspedisiId($id)
     {
+        return $this->db->get_where("ekspedisi", ['id' => $id])->row_array();
     }
 
     public function tambahEkspedisi()
