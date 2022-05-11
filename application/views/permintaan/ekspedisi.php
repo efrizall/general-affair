@@ -55,7 +55,7 @@
                                             <li><a class="dropdown-item" href="<?= base_url('admin/eDetail/') . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                             <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url('admin/eEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                            <li><a class="dropdown-item tombol-hapus" href=""><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                            <li><a class="dropdown-item tombol-hapus" href="<?= base_url('admin/eHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                             <li><a class="dropdown-item text-success tombol-setuju" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
                                             <li><a class="dropdown-item text-danger tombol-tolak" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                         </ul>
