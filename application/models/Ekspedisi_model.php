@@ -16,20 +16,15 @@ class Ekspedisi_model extends CI_Model
         $data = [
             'nama' => $this->input->post('nama', true),
             'divisi' => $this->input->post('divisi', true),
-            'mobil_id' => $this->input->post('permintaan', true),
-            'tujuan' => $this->input->post('keterangan', true),
-            'keperluan' => 'Belum diproses',
-            'tgl_pakai' => $this->input->post('tanggal', true),
-            'tgl_kembali' => 1,
-            'jam_pakai' => $this->input->post('tanggal', true),
-            'jam_kembali' => $this->input->post('tanggal', true),
-            'pemeriksa' => $this->input->post('tanggal', true),
-            'ttd_avp' => 'Belum Disetujui',
-            'ttd_pemeriksa' => 'Belum Disetujui',
-            'status' => 'Belum Dikembalikan',
-            'tanggal' => $this->input->post('tanggal', true),
-            'file' => 'Tidak ada',
-            'user_id' => 1
+            'tujuan' => $this->input->post('tujuan', true),
+            'sifat' => $this->input->post('sifat', true),
+            'no_surat' => $this->input->post('nosurat', true),
+            'no_resi' => $this->input->post('noresi', true),
+            'tgl_surat' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
+            'user_id' => $this->input->post('id', true),
+            'ttd_avp' => "Belum Disetujui",
+            'ttd_pemeriksa' => "Belum Disetujui",
         ];
 
         $this->db->insert('ekspedisi', $data);

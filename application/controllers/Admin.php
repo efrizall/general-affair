@@ -403,15 +403,50 @@ class Admin extends CI_Controller
     {
         // $role_id = $this->session->userdata('role_id');
 
-        $data['title'] = "Detail";
-        // $data['data'] = $this->Maintenance_model->selectId($id);
+        $data['title'] = "Tambah Ekspedisi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('permintaan/tambah_e', $data);
-        $this->load->view('templates/footer');
+        
+        // Set Rules
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus diisi !'
+        ));
+        $this->form_validation->set_rules('tujuan', 'Tujuan', 'required', array(
+            'required' => 'Tujuan harus diisi !'
+        ));
+        $this->form_validation->set_rules('sifat', 'Sifat', 'required', array(
+            'required' => 'Sifat harus dipilih !'
+        ));
+        $this->form_validation->set_rules('nosurat', 'No Surat', 'required', array(
+            'required' => 'No Surat harus diisi !'
+        ));
+        $this->form_validation->set_rules('noresi', 'No Resi', 'required', array(
+            'required' => 'No Resi harus diisi !'
+        ));
+        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
+            'required' => 'Pemeriksa harus dipilih !'
+        ));
+        $this->form_validation->set_rules('tanggal', 'Tanggal Permintaan', 'required', array(
+            'required' => 'Tanggal Permintaan harus dipilih !'
+        ));
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('permintaan/tambah_e', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Ekspedisi_model->tambahEkspedisi();
+            $this->session->set_flashdata(
+                'berhasil',
+                'Permintaan ditambahkan'
+            );
+            redirect('admin/pEkspedisi');
+        }
     }
 
     public function mEdit($id)

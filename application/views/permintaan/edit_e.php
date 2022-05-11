@@ -53,8 +53,6 @@
                     <div class="col">
                         <label for="tanggal">Tanggal Permintaan</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $data['tgl_surat'] ?>">
-                        <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">

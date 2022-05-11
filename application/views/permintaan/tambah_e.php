@@ -8,6 +8,7 @@
         <div class="card-body">
             <form action="" method="post">
                 <div class="row">
+                    <input type="text" class="form-control" name="id" id="id" value="<?= $user['id'] ?>" hidden>
                     <div class="col">
                         <label class="" for="nama">Nama</label>
                         <input type="text" class="form-control" name="nama" id="nama">
@@ -21,38 +22,38 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label class="" for="permintaan">Tujuan Pengiriman</label>
-                        <input type="text" class="form-control" name="permintaan" id="permintaan">
-                        <?= form_error('permintaan', '<small class="text-danger">', '</small>') ?>
+                        <label class="" for="tujuan">Tujuan Pengiriman</label>
+                        <input type="text" class="form-control" name="tujuan" id="tujuan">
+                        <?= form_error('tujuan', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
-                        <label for="tgl_surat">Sifat Dokumen</label>
+                        <label for="sifat">Sifat Dokumen</label>
                         <select name="sifat" id="sifat" class="custom-select">
-                            <option value="" selected disabled>Pilih Sifat Dokumen..</option>
+                            <option value="" selected disabled>Pilih Sifat Dokumen</option>
+                            <option value="Urgent - Kirim Langsung">Urgent - Kirim Langsung</option>
+                            <option value="Biasa - Ekspedisi">Biasa - Ekspedisi</option>
                         </select>
                         <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
-                        <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
+                        <?= form_error('sifat', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label class="" for="nama">No. Surat</label>
-                        <input type="text" class="form-control" name="nama" id="nama">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                        <label class="" for="nosurat">No. Surat</label>
+                        <input type="text" class="form-control" name="nosurat" id="nosurat">
+                        <?= form_error('nosurat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
-                        <label class="" for="divisi">No. Resi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi">
-                        <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
+                        <label class="" for="noresi">No. Resi</label>
+                        <input type="text" class="form-control" name="noresi" id="noresi">
+                        <?= form_error('noresi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="tgl_surat">Tanggal Permintaan</label>
+                        <label for="tanggal">Tanggal Permintaan</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal">
-                        <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('tanggal', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
