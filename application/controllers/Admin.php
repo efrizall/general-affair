@@ -506,7 +506,10 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
             'required' => 'Divisi harus diisi !'
         ));
-        $this->form_validation->set_rules('tujaun', 'Tujuan', 'required', array(
+        $this->form_validation->set_rules('mobil', 'Jenis mobil', 'required', array(
+            'required' => 'Jenis mobil harus dipilih !'
+        ));
+        $this->form_validation->set_rules('tujuan', 'Tujuan', 'required', array(
             'required' => 'Tujuan harus diisi !'
         ));
         $this->form_validation->set_rules('keperluan', 'Keperluan', 'required', array(
@@ -523,9 +526,6 @@ class Admin extends CI_Controller
         ));
         $this->form_validation->set_rules('jam_kembali', 'Jam kembali', 'required', array(
             'required' => 'Jam kembali harus diisi !'
-        ));
-        $this->form_validation->set_rules('mobil', 'Jenis mobil', 'required', array(
-            'required' => 'Jenis mobil harus dipilih !'
         ));
         $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
             'required' => 'Pemeriksa harus dipilih !'
