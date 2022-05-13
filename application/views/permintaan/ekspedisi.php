@@ -42,9 +42,9 @@
                                 <td><?= $row['nama'] ?></td>
                                 <td><?= $row['no_surat'] ?></td>
                                 <td><?= $row['sifat'] ?></td>
-                                <td>1. AVP Pelayanan Strategis SDM & Umum :<b>(Belum Disetujui)</b>
+                                <td>1. AVP Pelayanan Strategis SDM & Umum : <b>(<?= $row['ttd_avp'] ?>)</b>
                                     <br>
-                                    2. AVP Pengadaan : <b>(Belum Disetujui)</b>
+                                    2. <?= $row['pemeriksa'] ?> : <b>(<?= $row['ttd_pemeriksa'] ?>)</b>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -56,8 +56,8 @@
                                             <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                             <li><a class="dropdown-item" href="<?= base_url('admin/eEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
                                             <li><a class="dropdown-item tombol-hapus" href="<?= base_url('admin/eHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                            <li><a class="dropdown-item text-success tombol-setuju" href=""><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
-                                            <li><a class="dropdown-item text-danger tombol-tolak" href=""><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                            <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url('admin/ttdE/') . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
+                                            <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url('admin/tolakE/') . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                         </ul>
                                     </div>
                                 </td>

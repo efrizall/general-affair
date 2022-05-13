@@ -744,4 +744,30 @@ class Admin extends CI_Controller
         );
         redirect('admin/pTransportasi');
     }
+
+    public function ttdE($id)
+    {
+        $this->Approval_model->ttdAvp('ekspedisi', $id);
+        
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan disetujui'
+        );
+        redirect('admin/pEkspedisi');
+    }
+
+    public function tolakE($id)
+    {
+        $this->Approval_model->tolakAvp('ekspedisi', $id);
+        // if ($this->role == 'admin') {
+        // } else {
+        //     $this->Approval_model->tolakPemeriksa('ekspedisi', $id);
+        // }
+
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan tidak disetujui'
+        );
+        redirect('admin/pEkspedisi');
+    }
 }
