@@ -6,7 +6,7 @@
         <div class="col-sm-4">
         </div>
         <div class="col my-auto">
-            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/pTransportasi') ?>">
+            <a class="float-right btn btn btn-primary mb-3" type="button" onclick="history.back()">
                 <i class="fas fa-fw fa-chevron-left"></i> Kembali
             </a>
         </div>

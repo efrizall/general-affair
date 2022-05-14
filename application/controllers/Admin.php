@@ -12,6 +12,7 @@ class Admin extends CI_Controller
         $this->load->model('Approval_model');
         $this->load->model('User_model');
         $this->load->model('Transportasi_model');
+        $this->load->model('Mobil_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if ($this->role_id == 1) {
             $this->role = 'admin';
@@ -249,11 +250,28 @@ class Admin extends CI_Controller
 
         $data['title'] = "Manajemen Mobil";
         $data['role_id'] = $this->role_id;
+        $data['data'] = $this->Mobil_model->select();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('manajemen/mobil', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahMobil()
+    {
+        // $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Manajemen Mobil";
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('manajemen/tambah_mobil', $data);
         $this->load->view('templates/footer');
     }
 

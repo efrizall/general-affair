@@ -8,7 +8,7 @@
                 <div class="col-sm-4">
                 </div>
                 <div class="col my-auto">
-                    <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/mTambah') ?>">
+                    <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/tambahMobil') ?>">
                     <i class="fas fa-fw fa-plus"></i> Tambah
                     </a>                        
                 </div>
@@ -30,10 +30,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $no = 1;
+                                foreach($data as $row){
+                                ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Toyota Innova</td>
-                                    <td>B 2753 STM</td>
+                                    <td><?= $no ?></td>
+                                    <td><?= $row['jenis'] ?></td>
+                                    <td><?= $row['nopol'] ?></td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="aksi" data-toggle="dropdown" aria-expanded="false">
@@ -46,6 +50,10 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <?php
+                                $no = $no + 1;
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
