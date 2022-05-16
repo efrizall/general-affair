@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 07 Apr 2022 pada 03.43
+-- Waktu pembuatan: 16 Bulan Mei 2022 pada 04.21
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.23
 
@@ -83,7 +83,8 @@ CREATE TABLE `ekspedisi` (
 --
 
 INSERT INTO `ekspedisi` (`id`, `nama`, `tujuan`, `sifat`, `no_resi`, `divisi`, `pemeriksa`, `tgl_surat`, `tgl_diterima`, `no_surat`, `user_id`, `ttd_avp`, `ttd_pemeriksa`, `catatan`, `file`) VALUES
-(1, 'efrizal', 'alksdjlkasj', 'lkasdlk', 123123, 'asdasdasdasd', 'asdasd', '2022-03-30', '2022-03-30', 123123, 1, 'belum', 'belum', 'idak', 'tidak ada');
+(2, 'tess', 'tes', 'Urgent - Kirim Langsung', 123123123, 'tres', 'AVP Pendukung Strategik', '2022-05-11', '0000-00-00', 123123123, 10, 'Tidak Disetujui', 'Belum Disetujui', '', ''),
+(4, 'testtt', 'tessttt', 'Biasa - Ekspedisi', 112222, 'testtt', 'AVP Tresuri', '2022-05-13', '0000-00-00', 12222, 10, 'Disetujui', 'Belum Disetujui', '', '');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ CREATE TABLE `maintenance` (
 --
 
 INSERT INTO `maintenance` (`id`, `nama`, `divisi`, `permintaan`, `keterangan`, `status`, `tanggal`, `pemeriksa`, `file`, `user_id`, `ttd_avp`, `ttd_pemeriksa`) VALUES
-(38, 'Masayu Olivia Nurjanah', 'SDM', 'permintaan', 'barang', 'Sedang diproses', '2022-04-06', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 13, 'Disetujui', 'Disetujui');
+(38, 'Masayu Olivia Nurjanah', 'SDM', 'permintaan', 'barang', 'Sedang diproses', '2022-04-06', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 13, 'Disetujui', 'Disetujui'),
+(39, 'nama', 'divisi', 'permintaan', 'keterangan', 'Selesai', '2022-04-14', 'AVP Pelayanan Strategis SDM & Umum', 'Tidak ada', 10, 'Belum Disetujui', 'Belum Disetujui');
 
 -- --------------------------------------------------------
 
@@ -264,8 +266,8 @@ CREATE TABLE `transportasi` (
 INSERT INTO `transportasi` (`id`, `nama`, `divisi`, `mobil_id`, `tujuan`, `keperluan`, `tgl_pakai`, `tgl_kembali`, `jam_pakai`, `jam_kembali`, `pemeriksa`, `ttd_avp`, `ttd_pemeriksa`, `status`, `tanggal`, `file`, `user_id`) VALUES
 (2, 'Efrizal', 'SDM', 2, 'GBK', 'Lari pagi', '2022-03-27', '2022-03-27', '10:28:00', '10:28:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-27', 'Tidak ada', 5),
 (4, 'tes edit lagi', 'tes edit', 1, 'tujuan', 'keperluan', '2022-03-28', '2022-03-28', '22:33:00', '22:33:00', 'AVP Strategi & Sinergi Aset', 'Belum Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-28', 'Tidak ada', 5),
-(5, 'status', 'divisi', 2, 'status', 'sksksks', '2022-03-29', '2022-03-29', '13:45:00', '13:45:00', 'AVP Strategi & Sinergi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-29', 'Tidak ada', 5),
-(7, 'testing', 'testing', 4, 'testing', 'testing', '2022-04-03', '2022-04-03', '08:01:00', '15:34:00', 'AVP Operasional & Pengelolaan Informasi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Belum Dikembalikan', '2022-04-03', 'Tidak ada', 5);
+(5, 'status', 'divisi', 1, 'status', 'sksksks', '2022-03-29', '2022-03-29', '13:45:00', '13:45:00', 'AVP Strategi & Sinergi Aset', 'Tidak Disetujui', 'Belum Disetujui', 'Sudah dikembalikan', '2022-03-29', 'Tidak ada', 5),
+(7, 'testingasdasd', 'testingasdasd', 1, 'testingddddd', 'testingddddd', '2022-04-03', '2022-04-03', '08:01:00', '15:34:00', 'AVP Tresuri', 'Disetujui', 'Belum Disetujui', 'Belum Dikembalikan', '2022-04-03', 'Tidak ada', 1);
 
 -- --------------------------------------------------------
 
@@ -288,7 +290,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `name`, `divisi`, `password`, `role_id`, `date_created`) VALUES
-(9, 125, 'testing edit', 'Pelayanan Strategis SDM & Umum', 'efrizal', 1, '2022-04-05 10:56:18'),
+(9, 125, 'testing edit', 'Anggaran', 'admin', 1, '2022-05-13 15:26:08'),
 (10, 121, 'Muhajir', 'Pelayanan Strategis SDM & Umum', '$2y$10$R7YAyw.iTS4j4tiDegI/4ehRIW8J1hMdXqpliLHVyNB1XjvXFNv86', 1, '2022-04-04 10:54:53'),
 (11, 122, 'Nani Indriyani', 'Pelayanan Strategis SDM & Umum', '$2y$10$N25PdY9u2vgG3VN/eKnAr.KB2teThqJ8mwCb3tu9F0IwzSs.Dh8N2', 2, '2022-04-04 10:55:52'),
 (12, 123, 'Achmad Mashuri', 'Pelayanan Strategis SDM & Umum', '$2y$10$iZMwGcTbCnxAbx7Envy3AebuqYodLQJWjohJhg1z07tvrWd788nOK', 3, '2022-04-04 10:56:30'),
@@ -393,13 +395,13 @@ ALTER TABLE `app_maintenance`
 -- AUTO_INCREMENT untuk tabel `ekspedisi`
 --
 ALTER TABLE `ekspedisi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT untuk tabel `mobil`
