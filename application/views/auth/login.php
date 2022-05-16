@@ -29,7 +29,7 @@
                                     </button>
                                 </form>
                                 <div class="user">
-                                    <a class="btn btn-primary btn-user btn-block mt-3">
+                                    <a class="btn btn-primary btn-user btn-block mt-3" href="<?= base_url('guest/lapor') ?>">
                                         Laporan Kerusakan
                                     </a>
                                 </div>

@@ -48,6 +48,25 @@ class Maintenance_model extends CI_Model
         $this->db->insert('maintenance', $data);
     }
 
+    public function tambahMaintenanceGuest()
+    {
+        $data = [
+            'nama' => $this->input->post('nama', true),
+            'divisi' => $this->input->post('divisi', true),
+            'permintaan' => $this->input->post('permintaan', true),
+            'keterangan' => $this->input->post('keterangan', true),
+            'status' => 'Belum diproses',
+            'tanggal' => $this->input->post('tanggal', true),
+            'pemeriksa' => $this->input->post('pemeriksa', true),
+            'file' => 'Tidak ada',
+            'user_id' => 5,
+            'ttd_avp' => 'Belum Disetujui',
+            'ttd_pemeriksa' => 'Belum Disetujui'
+        ];
+
+        $this->db->insert('maintenance', $data);
+    }
+
     public function editMaintenance($id)
     {
         $data = [
