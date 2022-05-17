@@ -44,7 +44,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="aksi">
                                         <li><a class="dropdown-item" href="<?= base_url('admin/editUser/').$row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                        <li><a class="dropdown-item text-danger tombol-hapus" href="tes"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('admin/hapusUser/').$row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                     </ul>
                                 </div>
                             </td>

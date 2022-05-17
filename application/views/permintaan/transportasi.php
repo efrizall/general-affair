@@ -4,7 +4,7 @@
         <div class="col-sm-4">
         </div>
         <div class="col my-auto">
-            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/tTambah') ?>">
+            <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url("$role/tTambah") ?>">
                 <i class="fas fa-fw fa-plus"></i> Tambah Permintaan
             </a>
         </div>
@@ -57,10 +57,10 @@
                                             <li>
                                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button>
                                             </li>
-                                            <li><a class="dropdown-item" href="<?= base_url('admin/tEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                            <li><a class="dropdown-item tombol-hapus" href="<?= base_url('admin/tHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                            <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url('admin/ttdT/') . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
-                                            <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url('admin/tolakT/') . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                            <li><a class="dropdown-item" href="<?= base_url("$role/tEdit/") . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                            <li><a class="dropdown-item tombol-hapus" href="<?= base_url("$role/tHapus/") . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                            <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url("$role/ttdT/") . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
+                                            <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url("$role/tolakT/") . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                         </ul>
                                     </div>
                                 </td>

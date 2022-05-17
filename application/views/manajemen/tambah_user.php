@@ -101,12 +101,11 @@
                         <?= form_error('role', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
-                
                 <div class="row mt-5">
                     <div class="col">
                     </div>
                     <div class="col">
-                        <a href="<?= base_url('admin/mUser') ?>" class="btn btn-danger float-right ml-2">Batal</a>
+                        <button type="button" onclick="history.back()" class="btn btn-danger float-right ml-2">Batal</button>
                         <button type="submit" class="btn btn-success float-right">Simpan</button>
                     </div>
                 </div>

@@ -244,6 +244,16 @@ class Admin extends CI_Controller
         }
     }
 
+    public function hapusUser($id)
+    {
+        $this->User_model->hapus($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'User dihapus'
+        );
+        redirect('admin/mUser');
+    }
+
     public function mMobil()
     {
         // $role_id = $this->session->userdata('role_id');
@@ -268,11 +278,69 @@ class Admin extends CI_Controller
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('manajemen/tambah_mobil', $data);
-        $this->load->view('templates/footer');
+        // Set Rules
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required', array(
+            'required' => 'Jenis harus diisi !'
+        ));
+        $this->form_validation->set_rules('nopol', 'No Polisi', 'required', array(
+            'required' => 'No Polisi harus diisi !'
+        ));
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('manajemen/tambah_mobil', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Mobil_model->tambah();
+            $this->session->set_flashdata(
+                'berhasil',
+                'Mobil ditambahkan'
+            );
+            redirect('admin/mMobil');
+        }
+    }
+
+    public function hapusMobil($id)
+    {
+        $this->Mobil_model->hapus($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Data mobil dihapus'
+        );
+        redirect('admin/mMobil');
+    }
+
+    public function editMobil($id)
+    {
+        $data['title'] = "Edit Mobil";
+        $data['role_id'] = $this->role_id;
+        $data['data'] = $this->Mobil_model->selectId($id);
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
+        // Set Rules
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required', array(
+            'required' => 'Jenis harus diisi !'
+        ));
+        $this->form_validation->set_rules('nopol', 'No Polisi', 'required', array(
+            'required' => 'No Polisi harus diisi !'
+        ));
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('manajemen/edit_mobil', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Mobil_model->edit($id);
+            $this->session->set_flashdata(
+                'berhasil',
+                'Data Mobil diedit'
+            );
+            redirect('admin/mMobil');
+        }
     }
 
     public function mDetail($id)
@@ -361,7 +429,6 @@ class Admin extends CI_Controller
     {
 
         $data['title'] = "Tambah Transportasi";
-        // $data['data'] = $this->Maintenance_model->selectId($id);
         $data['role_id'] = $this->role_id;
         $data['mobil'] = $this->Maintenance_model->select('mobil');
         $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');

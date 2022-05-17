@@ -112,7 +112,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/tambahStatus') ?>" method="post">
+            <form action="<?= base_url("$role/tambahStatus") ?>" method="post">
                 <div class="modal-body">
                     <input type="text" hidden id="id" name="id" value="">
                     <div class="form-group">

@@ -10,19 +10,19 @@
                 <div class="row">
                     <div class="col">
                         <label class="" for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="<?= $data['nama'] ?>">
+                        <input type="text" class="form-control" name="nama" id="nama" value="<?= $data['nama'] ?>">
                         <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
                         <label class="" for="divisi">Divisi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi" placeholder="<?= $data['divisi'] ?>">
+                        <input type="text" class="form-control" name="divisi" id="divisi" value="<?= $data['divisi'] ?>">
                         <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
                         <label class="" for="tujuan">Tujuan Pengiriman</label>
-                        <input type="text" class="form-control" name="tujuan" id="tujuan" placeholder="<?= $data['tujuan'] ?>">
+                        <input type="text" class="form-control" name="tujuan" id="tujuan" value="<?= $data['tujuan'] ?>">
                         <?= form_error('tujuan', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="col">
@@ -32,20 +32,18 @@
                             <option value="Urgent - Kirim Langsung">Urgent - Kirim Langsung</option>
                             <option value="Biasa - Ekspedisi">Biasa - Ekspedisi</option>
                         </select>
-                        <!-- <label class="" for="tanggal">Tanggal Permintaan</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal"> -->
                         <?= form_error('sifat', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
                         <label class="" for="nosurat">No. Surat</label>
-                        <input type="text" class="form-control" name="nosurat" id="nosurat" placeholder="<?= $data['no_surat'] ?>">
+                        <input type="text" class="form-control" name="nosurat" id="nosurat" value="<?= $data['no_surat'] ?>">
                         <?= form_error('nosurat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
                         <label class="" for="noresi">No. Resi</label>
-                        <input type="text" class="form-control" name="noresi" id="noresi" placeholder="<?= $data['no_resi'] ?>">
+                        <input type="text" class="form-control" name="noresi" id="noresi" value="<?= $data['no_resi'] ?>">
                         <?= form_error('noresi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
@@ -131,7 +129,7 @@
                     <div class="col">
                     </div>
                     <div class="col">
-                        <a href="<?= base_url('admin/pEkspedisi') ?>" class="btn btn-danger float-right ml-2">Batal</a>
+                        <button type="button" onclick="history.back()" class="btn btn-danger float-right ml-2">Batal</button>
                         <button type="submit" class="btn btn-success float-right">Simpan</button>
                     </div>
                 </div>

@@ -10,14 +10,14 @@
                 <div class="row">
                     <div class="col">
                         <label class="" for="jenis">Jenis</label>
-                        <input type="text" class="form-control" name="jenis" id="jenis">
+                        <input type="text" class="form-control" name="jenis" id="jenis" value="<?= $data['jenis'] ?>">
                         <small class="">Contoh : Merk Tipe (Toyota Innova)</small>
                         <br>
                         <?= form_error('jenis', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="col">
                         <label class="" for="nopol">No Polisi</label>
-                        <input type="text" class="form-control" name="nopol" id="nopol">
+                        <input type="text" class="form-control" name="nopol" id="nopol" value="<?= $data['nopol'] ?>">
                         <?= form_error('nopol', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
