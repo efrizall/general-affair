@@ -354,4 +354,29 @@ class Staff extends CI_Controller
         // );
         // redirect('staff/pMaintenance');
     }
+
+    public function tambahStatus()
+    {
+        $nama = $this->session->userdata('nama');
+        $divisi = $this->session->userdata('divisi');
+        $id = $this->input->post('id');
+
+        $this->form_validation->set_rules('status', 'Status', 'required', array(
+            'required' => 'Status harus diubah !'
+        ));
+
+        // Jika catatan proses ada maka..
+        $cek_proses = $this->db->get_where('status_mobil', ['transportasi_id' => $id])->row_array();
+        if ($cek_proses) {
+            $this->Transportasi_model->updateStatus($id); // Diupdate saja
+        } else {
+            $this->Transportasi_model->tambahStatus($id, $nama, $divisi); //Jika tidak ada ditambah prosesnya
+            $this->Transportasi_model->updateStatus($id);
+        }
+        $this->session->set_flashdata(
+            'berhasil',
+            'Status diubah'
+        );
+        redirect('staff/pTransportasi');
+    }
 }
