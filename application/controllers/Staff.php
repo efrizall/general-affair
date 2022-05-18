@@ -60,10 +60,10 @@ class Staff extends CI_Controller
     }
 
     public function pTransportasi(){
-        $role_id = $this->session->userdata('role_id');
-
         $data['title'] = "Transportasi";
-        $data['role_id'] = $role_id;
+        $data['data'] = $this->Maintenance_model->select('transportasi');
+        $data['role_id'] = $this->role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -162,6 +162,115 @@ class Staff extends CI_Controller
                 'Permintaan ditambahkan'
             );
             redirect('staff/pMaintenance');
+        }
+    }
+
+    public function tTambah()
+    {
+
+        $data['title'] = "Tambah Transportasi";
+        $data['role_id'] = $this->role_id;
+        $data['mobil'] = $this->Maintenance_model->select('mobil');
+        $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+
+        // Set Rules
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus diisi !'
+        ));
+        $this->form_validation->set_rules('tujuan', 'Tujuan', 'required', array(
+            'required' => 'Tujuan harus diisi !'
+        ));
+        $this->form_validation->set_rules('keperluan', 'Keperluan', 'required', array(
+            'required' => 'Keperluan harus diisi !'
+        ));
+        $this->form_validation->set_rules('tanggal_pakai', 'Tanggal Pakai', 'required', array(
+            'required' => 'Tanggal pakai harus ditentukan !'
+        ));
+        $this->form_validation->set_rules('tanggal_kembali', 'Tanggal Kembali', 'required', array(
+            'required' => 'Tanggal kembali harus ditentukan !'
+        ));
+        $this->form_validation->set_rules('jam_pakai', 'Jam Pakai', 'required', array(
+            'required' => 'Jam pakai harus diisi !'
+        ));
+        $this->form_validation->set_rules('jam_kembali', 'Jam Kembali', 'required', array(
+            'required' => 'Jam kembali harus diisi !'
+        ));
+        $this->form_validation->set_rules('mobil', 'Jenis Mobil', 'required', array(
+            'required' => 'Jenis mobil harus diisi !'
+        ));
+        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
+            'required' => 'Pemeriksa harus dipilih !'
+        ));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required', array(
+            'required' => 'Tanggal harus ditentukan !'
+        ));
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('permintaan/tambah_t', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Transportasi_model->tambahTransportasi();
+            $this->session->set_flashdata(
+                'berhasil',
+                'Permintaan ditambahkan'
+            );
+            redirect('staff/pTransportasi');
+        }
+    }
+
+    public function eTambah()
+    {
+        // $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Tambah Ekspedisi";
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        
+        // Set Rules
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
+            'required' => 'Nama harus diisi !'
+        ));
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
+            'required' => 'Divisi harus diisi !'
+        ));
+        $this->form_validation->set_rules('tujuan', 'Tujuan', 'required', array(
+            'required' => 'Tujuan harus diisi !'
+        ));
+        $this->form_validation->set_rules('sifat', 'Sifat', 'required', array(
+            'required' => 'Sifat harus dipilih !'
+        ));
+        $this->form_validation->set_rules('nosurat', 'No Surat', 'required', array(
+            'required' => 'No Surat harus diisi !'
+        ));
+        $this->form_validation->set_rules('noresi', 'No Resi', 'required', array(
+            'required' => 'No Resi harus diisi !'
+        ));
+        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
+            'required' => 'Pemeriksa harus dipilih !'
+        ));
+        $this->form_validation->set_rules('tanggal', 'Tanggal Permintaan', 'required', array(
+            'required' => 'Tanggal Permintaan harus dipilih !'
+        ));
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('permintaan/tambah_e', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Ekspedisi_model->tambahEkspedisi();
+            $this->session->set_flashdata(
+                'berhasil',
+                'Permintaan ditambahkan'
+            );
+            redirect('admin/pEkspedisi');
         }
     }
 

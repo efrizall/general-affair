@@ -50,7 +50,7 @@
             </div>
             <form action="<?= base_url('admin/tambahProses') ?>" method="post">
                 <div class="modal-body">
-                    <input type="text" id="id" name="id" value="">
+                    <input type="text" id="id" name="id" value="" hidden>
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
@@ -82,7 +82,7 @@
             </div>
             <form action="<?= base_url('staff/tambahProses') ?>" method="post">
                 <div class="modal-body">
-                    <input type="text" id="id" name="id" value="">
+                    <input type="text" id="id" name="id" value="" hidden>
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
