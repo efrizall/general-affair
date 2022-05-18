@@ -467,6 +467,36 @@ class Staff extends CI_Controller
         }
     }
 
+    public function mHapus($id)
+    {
+        $this->Maintenance_model->hapusMaintenance($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus'
+        );
+        redirect('staff/pMaintenance');
+    }
+
+    public function tHapus($id)
+    {
+        $this->Transportasi_model->hapusTransportasi($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus'
+        );
+        redirect('staff/pTransportasi');
+    }
+
+    public function eHapus($id)
+    {
+        $this->Ekspedisi_model->hapusEkspedisi($id);
+        $this->session->set_flashdata(
+            'berhasil',
+            'Permintaan dihapus'
+        );
+        redirect('staff/pEkspedisi');
+    }
+
     public function tambahProses()
     {
         $nama = $this->session->userdata('nama');
