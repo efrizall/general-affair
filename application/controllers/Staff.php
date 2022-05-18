@@ -270,7 +270,7 @@ class Staff extends CI_Controller
                 'berhasil',
                 'Permintaan ditambahkan'
             );
-            redirect('admin/pEkspedisi');
+            redirect('staff/pEkspedisi');
         }
     }
 
@@ -284,6 +284,34 @@ class Staff extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('permintaan/detail_m', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function tDetail($id)
+    {
+        $data['title'] = "Detail";
+        $data['data'] = $this->Transportasi_model->selectTransportasiId($id);
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/detail_t', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function eDetail($id)
+    {
+        // $role_id = $this->session->userdata('role_id');
+
+        $data['title'] = "Detail";
+        $data['data'] = $this->Ekspedisi_model->selectEkspedisiId($id);
+        $data['role_id'] = $this->role_id;
+        $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('permintaan/detail_e', $data);
         $this->load->view('templates/footer');
     }
 
