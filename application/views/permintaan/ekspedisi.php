@@ -54,10 +54,20 @@
                                         <ul class="dropdown-menu" aria-labelledby="aksi">
                                             <li><a class="dropdown-item" href="<?= base_url("$role/eDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                             <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
-                                            <li><a class="dropdown-item" href="<?= base_url("$role/eEdit/") . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                            <li><a class="dropdown-item tombol-hapus" href="<?= base_url("$role/eHapus/") . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                            <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url("$role/ttdE/") . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
-                                            <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url("$role/tolakE/") . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                            <?php
+                                            if($row['user_id'] == $user['id']){
+                                            ?>
+                                                <li><a class="dropdown-item" href="<?= base_url("$role/eEdit/") . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url("$role/eHapus/") . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                            <?php
+                                            }
+                                            if($role == 'admin' || $role == 'pemeriksa'){
+                                            ?>
+                                                <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url("$role/ttdE/") . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
+                                                <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url("$role/tolakE/") . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
                                     </div>
                                 </td>
