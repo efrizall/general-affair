@@ -1,19 +1,25 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <form action="" method="post" class="none-print">
+<form action="<?= base_url('staff/rTransportasi') ?>" method="post" class="none-print">
         <div class="row">
-            <div class="col-3"><p>Dari tanggal</p></div>
-            <div class="col-3"><p>Sampai</p></div>
+            <div class="col-3">
+                <p>Dari tanggal</p>
+            </div>
+            <div class="col-3">
+                <p>Sampai</p>
+            </div>
         </div>
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
-                <input type="date" class="form-control" name="mulai">
+                    <input type="date" class="form-control" name="mulai" id="mulai">
+                    <?= form_error('mulai', '<small class="text-danger">', '</small>') ?>
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
-                <input type="date" class="form-control" name="akhir">
+                    <input type="date" class="form-control" name="akhir" id="akhir">
+                    <?= form_error('akhir', '<small class="text-danger">', '</small>') ?>
                 </div>
             </div>
             <div class="col">
@@ -53,19 +59,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        foreach ($result as $row) {
+                            $tanggal = date_create($row['tanggal']);
+                        ?>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="td"></td>
+                            <td><?= date_format($tanggal, "d-m-Y") ?></td>
+                            <td><?= $row['id'] ?>/FPK/RNI/<?= date_format($tanggal, "m/Y") ?></td>
+                            <td><?= $row['nama'] ?></td>
+                            <td><?= $row['divisi'] ?></td>
+                            <td><?= $row['mobil_id'] ?></td>
+                            <td><?= $row['tujuan'] ?></td>
+                            <td><?= $row['keperluan'] ?></td>
+                            <td><?= $row['tgl_pakai'] ?></td>
+                            <td><?= $row['tgl_kembali'] ?></td>
+                            <td><?= $row['jam_pakai'] ?></td>
+                            <td class="td"><?= $row['jam_kembali'] ?></td>
                         </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

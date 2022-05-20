@@ -26,6 +26,14 @@ class Transportasi_model extends CI_Model
         return $query;
     }
 
+    public function selectTransportasiWhere($mulai, $akhir)
+    {
+        // $mulai = $this->input->post('mulai' . true);
+        // $akhir = $this->input->post('akhir' . true);
+        $query = $this->db->query("SELECT * FROM transportasi WHERE tanggal BETWEEN '$mulai' AND '$akhir' ORDER BY tanggal ASC");
+        return $query->result_array();
+    }
+
     public function tambahTransportasi()
     {
         $data = [
