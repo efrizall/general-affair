@@ -11,6 +11,14 @@ class Ekspedisi_model extends CI_Model
         return $this->db->get_where("ekspedisi", ['id' => $id])->row_array();
     }
 
+    public function selectEkspedisiWhere($mulai, $akhir)
+    {
+        // $mulai = $this->input->post('mulai' . true);
+        // $akhir = $this->input->post('akhir' . true);
+        $query = $this->db->query("SELECT * FROM ekspedisi WHERE tgl_surat BETWEEN '$mulai' AND '$akhir' ORDER BY tgl_surat ASC");
+        return $query->result_array();
+    }
+
     public function tambahEkspedisi()
     {
         $data = [
