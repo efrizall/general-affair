@@ -1,7 +1,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     
-<form action="<?= base_url("staff/rMaintenance") ?>" method="post" class="none-print">
+<form action="<?= base_url("staff/rEkspedisi") ?>" method="post" class="none-print">
         <div class="row">
             <div class="col-3">
                 <p>Dari tanggal</p>
@@ -61,7 +61,7 @@
                     <tbody>
                     <?php
                         foreach ($result as $row) {
-                            $tanggal = date_create($row['tanggal']);
+                            $tanggal = date_create($row['tgl_surat']);
                         ?>
                         <tr>
                             <td><?= date_format($tanggal, "d-m-Y") ?></td>

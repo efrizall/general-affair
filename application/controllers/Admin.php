@@ -118,13 +118,13 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance', $data);
+            $this->load->view('rekap/maintenance_staff', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance', $data);
+            $this->load->view('rekap/maintenance_staff', $data);
             $this->load->view('templates/footer');
         }
     }
@@ -136,25 +136,69 @@ class Admin extends CI_Controller
         $data['title'] = "Transportasi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('rekap/transportasi', $data);
-        $this->load->view('templates/footer');
+        
+        // Set Rules
+        $this->form_validation->set_rules('mulai', 'Mulai', 'required', array(
+            'required' => 'Mulai harus diisi !'
+        ));
+        $this->form_validation->set_rules('akhir', 'Akhir', 'required', array(
+            'required' => 'Akhir harus diisi !'
+        ));
+
+        $mulai = $this->input->post('mulai', true);
+        $akhir = $this->input->post('akhir', true);
+        $tes = $this->input->post('tes');
+        $data['result'] = $this->Transportasi_model->selectTransportasiWhere($mulai, $akhir);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('rekap/transportasi_admin', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('rekap/transportasi_admin', $data);
+            $this->load->view('templates/footer');
+        }
+
     }
 
-    public function rEkspedisi()
-    {
-        // $role_id = $this->session->userdata('role_id');
+    public function rEkspedisi(){
+        $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
-        $data['role_id'] = $this->role_id;
+        $data['role_id'] = $role_id;
+        $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('rekap/ekspedisi', $data);
-        $this->load->view('templates/footer');
+
+        // Set Rules
+        $this->form_validation->set_rules('mulai', 'Mulai', 'required', array(
+            'required' => 'Mulai harus diisi !'
+        ));
+        $this->form_validation->set_rules('akhir', 'Akhir', 'required', array(
+            'required' => 'Akhir harus diisi !'
+        ));
+
+        $mulai = $this->input->post('mulai', true);
+        $akhir = $this->input->post('akhir', true);
+        $data['result'] = $this->Ekspedisi_model->selectEkspedisiWhere($mulai, $akhir);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('rekap/ekspedisi_admin', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('rekap/ekspedisi_admin', $data);
+            $this->load->view('templates/footer');
+        }
     }
 
     public function mUser()

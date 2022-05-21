@@ -114,13 +114,13 @@ class Staff extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance', $data);
+            $this->load->view('rekap/maintenance_staff', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance', $data);
+            $this->load->view('rekap/maintenance_staff', $data);
             $this->load->view('templates/footer');
         }
     }
@@ -150,13 +150,13 @@ class Staff extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/transportasi', $data);
+            $this->load->view('rekap/transportasi_staff', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/transportasi', $data);
+            $this->load->view('rekap/transportasi_staff', $data);
             $this->load->view('templates/footer');
         }
 
@@ -186,13 +186,13 @@ class Staff extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/ekspedisi', $data);
+            $this->load->view('rekap/ekspedisi_staff', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/ekspedisi', $data);
+            $this->load->view('rekap/ekspedisi_staff', $data);
             $this->load->view('templates/footer');
         }
     }
