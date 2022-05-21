@@ -1,7 +1,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     
-<form action="<?= base_url("admin/rMaintenance") ?>" method="post" class="none-print">
+<form action="<?= base_url("admin/rEkspedisi") ?>" method="post" class="none-print">
         <div class="row">
             <div class="col-3">
                 <p>Dari tanggal</p>
