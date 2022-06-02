@@ -70,6 +70,13 @@ class Transportasi_model extends CI_Model
         $this->db->insert('transportasi', $data);
     }
 
+    public function updateStatusMobil($id)
+    {
+        $this->db->set('status', 'Tidak Tersedia');
+        $this->db->where('id', $id);
+        $this->db->update('mobil');
+    }
+
     public function editTransportasi($id)
     {
         $data = [
