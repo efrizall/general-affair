@@ -34,6 +34,18 @@ class Transportasi_model extends CI_Model
         return $query->result_array();
     }
 
+    public function hitungTransportasi()
+    {
+        $query = $this->db->query('SELECT * FROM transportasi');
+        return $query->num_rows();
+    }
+
+    public function hitungTransportasiWhere($status)
+    {
+        $query = $this->db->query("SELECT * FROM transportasi WHERE status = '$status'");
+        return $query->num_rows();
+    }
+
     public function tambahTransportasi()
     {
         $data = [

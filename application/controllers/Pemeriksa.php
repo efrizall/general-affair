@@ -34,11 +34,23 @@ class Pemeriksa extends CI_Controller
             $data['role_id'] = $role_id;
             $data['role'] = $this->role;
             $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+            $data['data_maintenance'] = $this->Maintenance_model->hitungMaintenance();
+            $data['data_transportasi'] = $this->Transportasi_model->hitungTransportasi();
+            $data['data_ekspedisi'] = $this->Ekspedisi_model->hitungEkspedisi();
+            $data['selesai'] = [
+                'm' => $this->Maintenance_model->hitungMaintenanceWhere('Selesai'),
+                't' => $this->Transportasi_model->hitungTransportasiWhere('Sudah Dikembalikan')
+            ];
+            $data['sedang_diproses'] = $this->Maintenance_model->hitungMaintenanceWhere('Sedang diproses');
+            $data['belum_diproses'] = [
+                'm' => $this->Maintenance_model->hitungMaintenanceWhere('Belum diproses'),
+                't' => $this->Transportasi_model->hitungTransportasiWhere('Belum Dikembalikan')
+            ];
     
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('pemeriksa/index', $data);
+            $this->load->view('index', $data);
             $this->load->view('templates/footer');
         }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Anda tidak memiliki akses</div>');
@@ -315,7 +327,7 @@ class Pemeriksa extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('pemeriksa/edit_m', $data);
+            $this->load->view('permintaan/edit_m', $data);
             $this->load->view('templates/footer');
         } else {
             $this->Maintenance_model->editMaintenance($id);

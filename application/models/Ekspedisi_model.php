@@ -19,6 +19,20 @@ class Ekspedisi_model extends CI_Model
         return $query->result_array();
     }
 
+    public function hitungEkspedisi()
+    {
+        $query = $this->db->query('SELECT * FROM ekspedisi');
+        return $query->num_rows();
+    }
+
+    public function hitungEkspedisiWhere($status)
+    {
+        $query = $this->db->query("SELECT * FROM ekspedisi WHERE status = '$status'");
+        return $query->num_rows();
+    }
+
+    
+
     public function tambahEkspedisi()
     {
         $data = [

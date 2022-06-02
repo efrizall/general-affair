@@ -20,13 +20,25 @@ class Maintenance_model extends CI_Model
         return $query->result_array();
     }
 
-    function selectMaintenance()
+    public function selectMaintenance()
     {
         $this->db->select('*');
         $this->db->from('maintenance');
         $this->db->join('proses', 'anggota.id_anggota = simpanan.id_anggota');
         $query = $this->db->get();
         return $query;
+    }
+
+    public function hitungMaintenance()
+    {
+        $query = $this->db->query('SELECT * FROM maintenance');
+        return $query->num_rows();
+    }
+
+    public function hitungMaintenanceWhere($status)
+    {
+        $query = $this->db->query("SELECT * FROM maintenance WHERE status = '$status'");
+        return $query->num_rows();
     }
 
     public function tambahMaintenance()
