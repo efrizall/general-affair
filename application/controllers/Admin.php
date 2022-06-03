@@ -75,12 +75,14 @@ class Admin extends CI_Controller
     public function pTransportasi()
     {
         // $role_id = $this->session->userdata('role_id');
+        $this->load->helper('date');
 
         $data['title'] = "Transportasi";
         $data['data'] = $this->Maintenance_model->select('transportasi');
         $data['role_id'] = $this->role_id;
         $data['role'] = $this->role;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['waktu'] = date("d M Y");
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
