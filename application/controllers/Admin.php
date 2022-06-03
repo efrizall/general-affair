@@ -486,7 +486,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Tambah Transportasi";
         $data['role_id'] = $this->role_id;
-        $data['mobil'] = $this->Maintenance_model->select('mobil');
+        $data['mobil'] = $this->Transportasi_model->selectMobilWhere();
         $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 

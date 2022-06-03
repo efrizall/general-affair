@@ -11,6 +11,14 @@ class Transportasi_model extends CI_Model
         return $this->db->get("mobil")->result_array();
     }
 
+    public function selectMobilWhere()
+    {
+        $query = $this->db->get_where('mobil', array(
+            'status' => 'Tersedia'
+        ));
+        return $query->result_array();
+    }
+
     public function selectPemeriksa()
     {
         return $this->db->get("pemeriksa")->result_array();
