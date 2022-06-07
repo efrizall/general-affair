@@ -34,7 +34,7 @@ class User_model extends CI_Model
             'nip' => $this->input->post('nip', true),
             'name' => $this->input->post('nama', true),
             'divisi' => $this->input->post('divisi', true),
-            'password' => $this->input->post('password', true),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'role_id' => $this->input->post('role', true)
         ];
         $this->db->where('id', $id);
