@@ -1,3 +1,17 @@
+<script>
+    var serverTime = new Date();
+    var clientTime = new Date();
+    var diff = serverTime.getTime() - clientTime.getTime();
+
+    function displayServerTime() {
+        var clientTime = new Date();
+        var time = new Date(clientTime.getTime() + diff);
+        var sh = time.getHours().toString();
+        var sm = time.getMinutes().toString();
+        var ss = time.getSeconds().toString();
+        document.getElementById("clock").innerHTML = (sh.length == 1 ? "0" + sh : sh) + ":" + (sm.length == 1 ? "0" + sm : sm) + ":" + (ss.length == 1 ? "0" + ss : ss);
+    }
+</script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -64,7 +78,14 @@
                     </div>
                 </li> -->
 
-                <div class="topbar-divider d-none d-sm-block"></div>
+                <body onload="setInterval('displayServerTime()', 1000);">
+                    <span id="clock" class="mt-4 blue-grey darken-4 text-bold-400">
+                        <p>Jam</p>
+                    </span>
+                </body>
+
+                <div class=" topbar-divider d-none d-sm-block">
+                </div>
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
