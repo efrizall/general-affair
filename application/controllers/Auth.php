@@ -32,7 +32,8 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('user', ['nip' => $nip])->row_array();
         if ($user) {
-            if ($password == $user['password']) {
+            // $password == $user['password']
+            if (password_verify($password,$user['password'])) {
                 // Mengirim data menggunakan session
                 $data = [
                     'id' => $user['id'],
