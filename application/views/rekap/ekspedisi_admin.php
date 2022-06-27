@@ -61,7 +61,7 @@
                     <tbody>
                     <?php
                         foreach ($result as $row) {
-                            $tanggal = date_create($row['tanggal']);
+                            $tanggal = date_create($row['tgl_surat']);
                         ?>
                         <tr>
                             <td><?= date_format($tanggal, "d-m-Y") ?></td>
