@@ -16,7 +16,15 @@
                     </div>
                     <div class="col">
                         <label class="" for="divisi">Divisi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi">
+                        <select name="divisi" id="divisi" class="custom-select">
+                            <option selected disabled value="">Pilih Divisi..</option>
+                            <?php
+                            foreach ($divisi as $d) { ?>
+                                <option value="<?= $d['divisi'] ?>"><?= $d['divisi'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                         <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
@@ -43,7 +51,13 @@
                         <label class="" for="pemeriksa">Pemeriksa</label>
                         <select name="pemeriksa" id="pemeriksa" class="custom-select">
                             <option selected disabled value="">Pilih Pemeriksa Surat..</option>
-                            <option value="AVP Pendukung Direksi & Kesekretariatan">
+                            <?php
+                            foreach ($divisi as $d) { ?>
+                                <option value="AVP <?= $d['divisi'] ?>">AVP <?= $d['divisi'] ?></option>
+                            <?php
+                            }
+                            ?>
+                            <!-- <option value="AVP Pendukung Direksi & Kesekretariatan">
                                 <b>AVP Pendukung Direksi & Kesekretariatan</b>
                             </option>
                             <option value="AVP Komunikasi & Relasi Korporasi">
@@ -52,51 +66,51 @@
                             <option value="AVP TJSL & CSR">
                                 <b>AVP TJSL & CSR</b>
                             </option>
-                            <option value="AVP Hukum Bisnis & Kepatuhan" >
+                            <option value="AVP Hukum Bisnis & Kepatuhan">
                                 <b>AVP Hukum Bisnis & Kepatuhan</b>
                             </option>
-                            <option value="AVP Penasihat Hukum & Litigasi" >
+                            <option value="AVP Penasihat Hukum & Litigasi">
                                 <b>AVP Penasihat Hukum & Litigasi</b>
                             </option>
-                            <option value="AVP Strategi Korporasi & Transformasi Organisasi" >
+                            <option value="AVP Strategi Korporasi & Transformasi Organisasi">
                                 <b>AVP Strategi Korporasi & Transformasi Organisasi</b>
                             </option>
-                            <option value="AVP Pengendalian Kinerja Korporasi" >
+                            <option value="AVP Pengendalian Kinerja Korporasi">
                                 <b>AVP Pengendalian Kinerja Korporasi</b>
                             </option>
-                            <option value="AVP Pengembangan Usaha & Portofolio" >
+                            <option value="AVP Pengembangan Usaha & Portofolio">
                                 <b>AVP Pengembangan Usaha & Portofolio</b>
                             </option>
-                            <option value="AVP Riset & Inovasi" >
+                            <option value="AVP Riset & Inovasi">
                                 <b>AVP Riset & Inovasi</b>
                             </option>
-                            <option value="AVP Keuangan" >
+                            <option value="AVP Keuangan">
                                 <b>AVP Keuangan</b>
                             </option>
-                            <option value="AVP Tresuri" >
+                            <option value="AVP Tresuri">
                                 <b>AVP Tresuri</b>
                             </option>
-                            <option value="AVP Akuntansi" >
+                            <option value="AVP Akuntansi">
                                 <b>AVP Akuntansi</b>
                             </option>
-                            <option value="AVP Anggaran" >
+                            <option value="AVP Anggaran">
                                 <b>AVP Anggaran</b>
                             </option>
-                            <option value="AVP Operasional & Pengelolaan Informasi Aset" >
+                            <option value="AVP Operasional & Pengelolaan Informasi Aset">
                                 <b>AVP Operasional & Pengelolaan Informasi Aset</b>
                             </option>
-                            <option value="AVP Strategi & Sinergi Aset" >
+                            <option value="AVP Strategi & Sinergi Aset">
                                 <b>AVP Strategi & Sinergi Aset</b>
                             </option>
-                            <option value="AVP Optimalisasi & Komersialisasi Aset" >
+                            <option value="AVP Optimalisasi & Komersialisasi Aset">
                                 <b>AVP Optimalisasi & Komersialisasi Aset</b>
                             </option>
-                            <option value="AVP Pelayanan Strategis SDM & Umum" >
+                            <option value="AVP Pelayanan Strategis SDM & Umum">
                                 <b>AVP Pelayanan Strategis SDM & Umum</b>
                             </option>
-                            <option value="AVP Pendukung Strategik" >
+                            <option value="AVP Pendukung Strategik">
                                 <b>AVP Pendukung Strategik</b>
-                            </option>
+                            </option> -->
                         </select>
                         <?= form_error('pemeriksa', '<small class="text-danger">', '</small>') ?>
                     </div>

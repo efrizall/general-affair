@@ -6,7 +6,9 @@ class Guest extends CI_Controller
     public function lapor()
     {
         $this->load->model('Maintenance_model');
+        $this->load->model('Divisi_model');
         $data['title'] = "Lapor Langsung";
+        $data['divisi'] = $this->Divisi_model->getDivisi();
 
         // Set Rules
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(

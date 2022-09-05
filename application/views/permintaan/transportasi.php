@@ -53,9 +53,9 @@
                                             <i class="fas fa-fw fa-list"></i>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="aksi">
-                                            
+
                                             <?php
-                                            if($role == 'admin'){
+                                            if ($role == 'admin') {
                                             ?>
                                                 <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
@@ -67,31 +67,40 @@
                                                 <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url("$role/ttdT/") . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
                                                 <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url("$role/tolakT/") . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                             <?php
-                                            }
-                                            elseif($row['pemeriksa']){
+                                            } elseif ($role == 'pemeriksa') {
                                             ?>
                                                 <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
-                                                <li>
-                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button>
-                                                </li>
                                                 <?php
-                                                if($row['user_id'] == $user['id']){
+                                                if ($row['user_id'] == $user['id']) {
                                                 ?>
                                                     <li><a class="dropdown-item" href="<?= base_url('pemeriksa/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
                                                     <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>
-                                                
+
                                                 <li><a class="dropdown-item text-success tombol-setuju" href="<?= base_url("$role/ttdT/") . $row['id'] ?>"><i class="fas fa-fw fa-check mr-2"></i> Setujui</a></li>
                                                 <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url("$role/tolakT/") . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                             <?php
-                                            }
-
-                                            else{
+                                            } elseif ($role == 'staff') {
                                             ?>
                                                 <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                                <li>
+                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button>
+                                                </li>
+                                                <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
+                                            <?php
+                                            } else { ?>
+                                                <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                                <?php
+                                                if ($row['user_id'] == $user['id']) {
+                                                ?>
+                                                    <li><a class="dropdown-item" href="<?= base_url('pemeriksa/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                <?php
+                                                }
+                                                ?>
                                                 <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                             <?php
                                             }

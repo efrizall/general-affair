@@ -13,6 +13,7 @@ class Admin extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Transportasi_model');
         $this->load->model('Mobil_model');
+        $this->load->model('Divisi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
         if ($this->role_id == 1) {
             $this->role = 'admin';
@@ -121,7 +122,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('akhir', 'Akhir', 'required', array(
             'required' => 'Akhir harus diisi !'
         ));
-        
+
         $mulai = $this->input->post('mulai', true);
         $akhir = $this->input->post('akhir', true);
         $tes = $this->input->post('tes');
@@ -150,7 +151,7 @@ class Admin extends CI_Controller
         $data['title'] = "Transportasi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        
+
         // Set Rules
         $this->form_validation->set_rules('mulai', 'Mulai', 'required', array(
             'required' => 'Mulai harus diisi !'
@@ -177,10 +178,10 @@ class Admin extends CI_Controller
             $this->load->view('rekap/transportasi_admin', $data);
             $this->load->view('templates/footer');
         }
-
     }
 
-    public function rEkspedisi(){
+    public function rEkspedisi()
+    {
         $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
@@ -249,13 +250,13 @@ class Admin extends CI_Controller
             'required' => 'Divisi harus dipilih !'
         ));
 
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('manajemen/tambah_user', $data);
             $this->load->view('templates/footer');
-        }else{
+        } else {
             $this->User_model->tambahUser();
             $this->session->set_flashdata(
                 'berhasil',
@@ -286,13 +287,13 @@ class Admin extends CI_Controller
             'required' => 'Divisi harus dipilih !'
         ));
 
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('manajemen/edit_user', $data);
             $this->load->view('templates/footer');
-        }else{
+        } else {
             $this->User_model->editUser($id);
             $this->session->set_flashdata(
                 'berhasil',
@@ -448,6 +449,7 @@ class Admin extends CI_Controller
 
         $data['title'] = "Tambah Maintenance";
         $data['role_id'] = $this->role_id;
+        $data['divisi'] = $this->Divisi_model->getDivisi();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
 
@@ -456,7 +458,7 @@ class Admin extends CI_Controller
             'required' => 'Nama harus diisi !'
         ));
         $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
-            'required' => 'Divisi harus diisi !'
+            'required' => 'Divisi harus dipilih !'
         ));
         $this->form_validation->set_rules('permintaan', 'Permintaan', 'required', array(
             'required' => 'Permintaan harus diisi !'
@@ -490,6 +492,7 @@ class Admin extends CI_Controller
         $data['role_id'] = $this->role_id;
         $data['mobil'] = $this->Transportasi_model->selectMobilWhere();
         $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');
+        $data['divisi'] = $this->Divisi_model->getDivisi();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
         // Set Rules
@@ -550,8 +553,9 @@ class Admin extends CI_Controller
 
         $data['title'] = "Tambah Ekspedisi";
         $data['role_id'] = $this->role_id;
+        $data['divisi'] = $this->Divisi_model->getDivisi();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        
+
         // Set Rules
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(
             'required' => 'Nama harus diisi !'
@@ -756,13 +760,13 @@ class Admin extends CI_Controller
             'required' => 'Status harus diubah !'
         ));
 
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $this->session->set_flashdata(
                 'Gagal',
                 'Proses diubah'
             );
             redirect('admin/pMaintenance');
-        }else{
+        } else {
             $this->Maintenance_model->updateStatus($id);
             $this->session->set_flashdata(
                 'berhasil',
@@ -841,7 +845,7 @@ class Admin extends CI_Controller
     public function ttdM($id)
     {
         $this->Approval_model->ttdAvp('maintenance', $id);
-        
+
         $this->session->set_flashdata(
             'berhasil',
             'Permintaan disetujui'
@@ -893,7 +897,7 @@ class Admin extends CI_Controller
     public function ttdE($id)
     {
         $this->Approval_model->ttdAvp('ekspedisi', $id);
-        
+
         $this->session->set_flashdata(
             'berhasil',
             'Permintaan disetujui'

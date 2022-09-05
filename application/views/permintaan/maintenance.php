@@ -56,7 +56,7 @@
                                         </button>
                                         <?php
                                         // admin
-                                        if($role == 'admin'){
+                                        if ($role == 'admin') {
                                         ?>
                                             <ul class="dropdown-menu" aria-labelledby="aksi">
                                                 <li><a class="dropdown-item" href="<?= base_url("admin/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
@@ -70,17 +70,17 @@
                                                 <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url('admin/tolakM/') . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                             </ul>
                                         <?php
-                                        // pemeriksa
-                                        }elseif($role == 'pemeriksa'){
+                                            // pemeriksa
+                                        } elseif ($role == 'pemeriksa') {
                                         ?>
                                             <ul class="dropdown-menu" aria-labelledby="aksi">
                                                 <li><a class="dropdown-item" href="<?= base_url("pemeriksa/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                                 <?php
-                                                if($row['user_id'] == $user['id']){
+                                                if ($row['user_id'] == $user['id']) {
                                                 ?>
                                                     <li><a class="dropdown-item" href="<?= base_url('pemeriksa/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                                    <li><a class="dropdown-item tombol-hapus" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>
@@ -88,8 +88,8 @@
                                                 <li><a class="dropdown-item text-danger tombol-tolak" href="<?= base_url('pemeriksa/tolakM/') . $row['id'] ?>"><i class="fas fa-fw fa-times mr-2"></i> Tidak Setujui</a></li>
                                             </ul>
                                         <?php
-                                        // staff
-                                        }elseif($role == 'staff'){
+                                            // staff
+                                        } elseif ($role == 'staff') {
                                         ?>
                                             <ul class="dropdown-menu" aria-labelledby="aksi">
                                                 <li><a class="dropdown-item" href="<?= base_url("staff/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
@@ -98,25 +98,25 @@
                                                     <button type="button" class="dropdown-item" data-toggle="modal" data-target="#prosesStaff" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Proses</button>
                                                 </li>
                                                 <?php
-                                                if($row['user_id'] == $user['id']){
+                                                if ($row['user_id'] == $user['id']) {
                                                 ?>
                                                     <li><a class="dropdown-item" href="<?= base_url('admin/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                                    <li><a class="dropdown-item tombol-hapus" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>
                                             </ul>
                                         <?php
-                                        }else{
+                                        } else {
                                         ?>
                                             <ul class="dropdown-menu" aria-labelledby="aksi">
                                                 <li><a class="dropdown-item" href="<?= base_url("admin/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href="" id="hapus"><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                                 <?php
-                                                if($row['user_id'] == $user['id']){
+                                                if ($row['user_id'] == $user['id']) {
                                                 ?>
                                                     <li><a class="dropdown-item" href="<?= base_url('admin/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                                    <li><a class="dropdown-item tombol-hapus" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>

@@ -16,7 +16,15 @@
                     </div>
                     <div class="col">
                         <label class="" for="divisi">Divisi</label>
-                        <input type="text" class="form-control" name="divisi" id="divisi">
+                        <select name="divisi" id="divisi" class="custom-select">
+                            <option selected disabled value="">Pilih Divisi..</option>
+                            <?php
+                            foreach ($divisi as $d) { ?>
+                                <option value="<?= $d['divisi'] ?>"><?= $d['divisi'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                         <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
