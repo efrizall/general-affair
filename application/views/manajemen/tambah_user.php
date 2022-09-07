@@ -24,7 +24,15 @@
                         <label class="" for="divisi">Divisi</label>
                         <select name="divisi" id="divisi" class="custom-select">
                             <option selected disabled value="">Pilih Divisi..</option>
-                            <option value="Pendukung Direksi & Kesekretariatan">
+                            <?php
+                            foreach ($divisi as $d) { ?>
+                                <option value="<?= $d['divisi'] ?>">
+                                    <?= $d['divisi'] ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                            <!-- <option value="Pendukung Direksi & Kesekretariatan">
                                 <b>Pendukung Direksi & Kesekretariatan</b>
                             </option>
                             <option value="Komunikasi & Relasi Korporasi">
@@ -77,7 +85,7 @@
                             </option>
                             <option value="Pendukung Strategik" >
                                 <b>Pendukung Strategik</b>
-                            </option>
+                            </option> -->
                         </select>
                         <?= form_error('divisi', '<small class="text-danger">', '</small>') ?>
                     </div>

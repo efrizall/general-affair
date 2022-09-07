@@ -221,7 +221,7 @@ class Admin extends CI_Controller
         $data['title'] = "Manajemen User";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $data['data'] = $this->User_model->selectUser();
+        $data['data'] = $this->db->query("SELECT * FROM user JOIN user_role ON user.role_id = user_role.id WHERE user_role.role != 'admin'")->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -233,6 +233,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = "Manajemen User";
         $data['role_id'] = $this->role_id;
+        $data['divisi'] = $this->Divisi_model->getDivisi();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
         // Set Rules

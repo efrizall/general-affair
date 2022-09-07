@@ -5,8 +5,8 @@
         </div>
         <div class="col my-auto">
             <a class="float-right btn btn btn-primary mb-3" type="button" href="<?= base_url('admin/tambahUser') ?>">
-            <i class="fas fa-fw fa-plus"></i> Tambah
-            </a>                        
+                <i class="fas fa-fw fa-plus"></i> Tambah
+            </a>
         </div>
     </div>
 
@@ -24,33 +24,35 @@
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Level</th>
+                            <th>Divisi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach($data as $row){
+                        foreach ($data as $row) {
                         ?>
-                        <tr>
-                            <td><?= $no ?></td>
-                            <td><?= $row['nip'] ?></td>
-                            <td><?= $row['name'] ?></td>
-                            <td><?= $row['role_id'] ?></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="aksi" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-fw fa-list"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="aksi">
-                                        <li><a class="dropdown-item" href="<?= base_url('admin/editUser/').$row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                        <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('admin/hapusUser/').$row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $no ?></td>
+                                <td><?= $row['nip'] ?></td>
+                                <td><?= $row['name'] ?></td>
+                                <td><?= $row['role'] ?></td>
+                                <td><?= $row['divisi'] ?></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="aksi" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-fw fa-list"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="aksi">
+                                            <li><a class="dropdown-item" href="<?= base_url('admin/editUser/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                            <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('admin/hapusUser/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php
-                        $no = $no + 1;
+                            $no = $no + 1;
                         }
                         ?>
                     </tbody>
