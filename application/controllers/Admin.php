@@ -221,7 +221,7 @@ class Admin extends CI_Controller
         $data['title'] = "Manajemen User";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        $data['data'] = $this->db->query("SELECT * FROM user JOIN user_role ON user.role_id = user_role.id WHERE user_role.role != 'admin'")->result_array();
+        $data['data'] = $this->db->query("SELECT user.id, user.nip, user.name, user.divisi, user_role.role FROM user JOIN user_role ON user.role_id = user_role.id WHERE user_role.role != 'admin'")->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -273,6 +273,7 @@ class Admin extends CI_Controller
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
         $data['data'] = $this->User_model->selectUserId($id);
+        $data['divisi'] = $this->Divisi_model->getDivisi();
 
         // Set Rules
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim', array(
@@ -281,12 +282,16 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(
             'required' => 'Nama harus diisi !'
         ));
-        $this->form_validation->set_rules('password', 'Password', 'required|trim', array(
-            'required' => 'Password harus diisi !'
-        ));
+        // $this->form_validation->set_rules('password', 'Password', 'required|trim', array(
+        //     'required' => 'Password harus diisi !'
+        // ));
         $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
             'required' => 'Divisi harus dipilih !'
         ));
+        $this->form_validation->set_rules('role', 'Level', 'required', array(
+            'required' => 'Level harus dipilih !'
+        ));
+
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -294,6 +299,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/topbar', $data);
             $this->load->view('manajemen/edit_user', $data);
             $this->load->view('templates/footer');
+            // var_dump($data['data']);
         } else {
             $this->User_model->editUser($id);
             $this->session->set_flashdata(
