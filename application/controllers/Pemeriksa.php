@@ -461,7 +461,7 @@ class Pemeriksa extends CI_Controller
                 'berhasil',
                 'Permintaan diupdate'
             );
-            redirect('admin/pEkspedisi');
+            redirect('pemeriksa/pEkspedisi');
         }
     }
 
