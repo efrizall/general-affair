@@ -90,6 +90,14 @@
                                                     <button type="button" class="dropdown-item" data-toggle="modal" data-target="#statusMobil" data-id="<?= $row['id'] ?>" data-nama="<?= $this->session->userdata('nama') ?>" data-divisi="<?= $this->session->userdata('divisi') ?>"><i class="fas fa-fw fa-cog mr-2"></i> Status Mobil</button>
                                                 </li>
                                                 <li><a class="dropdown-item" href=""><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
+                                                <?php
+                                                if ($row['user_id'] == $user['id']) {
+                                                ?>
+                                                    <li><a class="dropdown-item" href="<?= base_url('staff/tEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('staff/tHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                <?php
+                                                }
+                                                ?>
                                             <?php
                                             } else { ?>
                                                 <li><a class="dropdown-item" href="tDetail/<?= $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>

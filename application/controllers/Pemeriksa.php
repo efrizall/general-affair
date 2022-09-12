@@ -252,7 +252,9 @@ class Pemeriksa extends CI_Controller
             $this->load->view('permintaan/tambah_t', $data);
             $this->load->view('templates/footer');
         } else {
+            $id = $this->input->post('mobil');
             $this->Transportasi_model->tambahTransportasi();
+            $this->Transportasi_model->updateStatusMobil($id);
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan'
