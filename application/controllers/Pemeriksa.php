@@ -12,24 +12,26 @@ class Pemeriksa extends CI_Controller
         $this->load->model('Approval_model');
         $this->load->model('User_model');
         $this->load->model('Transportasi_model');
+        $this->load->model('Divisi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
-        if($this->role_id == 1){
+        if ($this->role_id == 1) {
             $this->role = 'admin';
-        }elseif($this->role_id == 2){
+        } elseif ($this->role_id == 2) {
             $this->role = 'pemeriksa';
-        }elseif($this->role_id == 3){
+        } elseif ($this->role_id == 3) {
             $this->role = 'staff';
-        }else{
+        } else {
             $this->role = 'umum';
         }
     }
-    
-    public function index(){
+
+    public function index()
+    {
         $role_id = $this->session->userdata('role_id');
         $logged = $this->session->userdata('logged');
 
         // cegah role lain masuk dan yang sudah login
-        if($role_id == 2 && $logged){
+        if ($role_id == 2 && $logged) {
             $data['title'] = "Dashboard";
             $data['role_id'] = $role_id;
             $data['role'] = $this->role;
@@ -46,19 +48,20 @@ class Pemeriksa extends CI_Controller
                 'm' => $this->Maintenance_model->hitungMaintenanceWhere('Belum diproses'),
                 't' => $this->Transportasi_model->hitungTransportasiWhere('Belum Dikembalikan')
             ];
-    
+
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('index', $data);
             $this->load->view('templates/footer');
-        }else{
+        } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Anda tidak memiliki akses</div>');
             redirect('auth');
         }
     }
 
-    public function pMaintenance(){
+    public function pMaintenance()
+    {
         $data['title'] = "Maintenance";
         $data['data'] = $this->Maintenance_model->select('maintenance');
         $role_id = $this->session->userdata('role_id');
@@ -73,7 +76,8 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function pTransportasi(){
+    public function pTransportasi()
+    {
         $role_id = $this->session->userdata('role_id');
         $logged = $this->session->userdata('logged');
 
@@ -90,7 +94,8 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function pEkspedisi(){
+    public function pEkspedisi()
+    {
         $role_id = $this->session->userdata('role_id');
         $logged = $this->session->userdata('logged');
 
@@ -107,7 +112,8 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function mDetail($id){
+    public function mDetail($id)
+    {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
@@ -121,7 +127,8 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tDetail($id){
+    public function tDetail($id)
+    {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Detail";
@@ -150,47 +157,51 @@ class Pemeriksa extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function mTambah(){
+    public function mTambah()
+    {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Tambah Maintenance";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['divisi'] = $this->Divisi_model->getDivisi();
 
 
         // Set Rules
-        $this->form_validation->set_rules('nama', 'Nama', 'required',array(
+        $this->form_validation->set_rules('nama', 'Nama', 'required', array(
             'required' => 'Nama harus diisi !'
         ));
-        $this->form_validation->set_rules('divisi', 'Divisi', 'required',array(
+        $this->form_validation->set_rules('divisi', 'Divisi', 'required', array(
             'required' => 'Divisi harus diisi !'
         ));
-        $this->form_validation->set_rules('permintaan', 'Permintaan', 'required',array(
+        $this->form_validation->set_rules('permintaan', 'Permintaan', 'required', array(
             'required' => 'Permintaan harus diisi !'
         ));
-        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required',array(
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required', array(
             'required' => 'Tanggal harus diisi !'
         ));
-        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required',array(
+        $this->form_validation->set_rules('pemeriksa', 'Pemeriksa', 'required', array(
             'required' => 'Pemeriksa harus dipilih !'
         ));
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('permintaan/tambah_m', $data);
             $this->load->view('templates/footer');
-        }else{
+        } else {
             $id = $this->session->userdata('id');
             $this->Maintenance_model->tambahMaintenance();
             $this->session->set_flashdata(
                 'berhasil',
-                'Permintaan ditambahkan');
+                'Permintaan ditambahkan'
+            );
             redirect('pemeriksa/pMaintenance');
         }
     }
 
-    public function tTambah(){
+    public function tTambah()
+    {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Tambah Transportasi";
@@ -198,6 +209,7 @@ class Pemeriksa extends CI_Controller
         $data['mobil'] = $this->Maintenance_model->select('mobil');
         $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['divisi'] = $this->Divisi_model->getDivisi();
 
         // Set Rules
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(
@@ -256,7 +268,8 @@ class Pemeriksa extends CI_Controller
         $data['title'] = "Tambah Ekspedisi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        
+        $data['divisi'] = $this->Divisi_model->getDivisi();
+
         // Set Rules
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(
             'required' => 'Nama harus diisi !'
@@ -299,11 +312,12 @@ class Pemeriksa extends CI_Controller
         }
     }
 
-    public function mEdit($id){
+    public function mEdit($id)
+    {
         // $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Edit Maintenance";
-        $data['data'] = $this->Maintenance_model->selectId('maintenance',$id);
+        $data['data'] = $this->Maintenance_model->selectId('maintenance', $id);
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
 
@@ -564,7 +578,7 @@ class Pemeriksa extends CI_Controller
     public function ttdE($id)
     {
         $this->Approval_model->ttdPemeriksa('ekspedisi', $id);
-        
+
         $this->session->set_flashdata(
             'berhasil',
             'Permintaan disetujui'

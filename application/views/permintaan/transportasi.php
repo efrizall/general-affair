@@ -74,7 +74,7 @@
                                                 <?php
                                                 if ($row['user_id'] == $user['id']) {
                                                 ?>
-                                                    <li><a class="dropdown-item" href="<?= base_url('pemeriksa/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="<?= base_url('pemeriksa/tEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
                                                     <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
@@ -96,7 +96,7 @@
                                                 <?php
                                                 if ($row['user_id'] == $user['id']) {
                                                 ?>
-                                                    <li><a class="dropdown-item" href="<?= base_url('pemeriksa/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item" href="<?= base_url('pemeriksa/tEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
                                                     <li><a class="dropdown-item text-danger tombol-hapus" href="<?= base_url('pemeriksa/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
