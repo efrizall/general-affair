@@ -13,14 +13,15 @@ class Staff extends CI_Controller
         $this->load->model('Approval_model');
         $this->load->model('User_model');
         $this->load->model('Transportasi_model');
+        $this->load->model('Divisi_model');
         $this->role_id = $this->session->userdata('role_id'); //For role id
-        if($this->role_id == 1){
+        if ($this->role_id == 1) {
             $this->role = 'admin';
-        }elseif($this->role_id == 2){
+        } elseif ($this->role_id == 2) {
             $this->role = 'pemeriksa';
-        }elseif($this->role_id == 3){
+        } elseif ($this->role_id == 3) {
             $this->role = 'staff';
-        }else{
+        } else {
             $this->role = 'umum';
         }
     }
@@ -30,10 +31,10 @@ class Staff extends CI_Controller
         $role_id = $this->session->userdata('role_id');
         $logged = $this->session->userdata('logged');
 
-        if($role_id == 3 && $logged){
+        if ($role_id == 3 && $logged) {
             $data['title'] = "Dashboard";
             $data['role_id'] = $role_id;
-            $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();    
+            $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
             $data['data_maintenance'] = $this->Maintenance_model->hitungMaintenance();
             $data['data_transportasi'] = $this->Transportasi_model->hitungTransportasi();
             $data['data_ekspedisi'] = $this->Ekspedisi_model->hitungEkspedisi();
@@ -52,13 +53,14 @@ class Staff extends CI_Controller
             $this->load->view('templates/topbar', $data);
             $this->load->view('index', $data);
             $this->load->view('templates/footer');
-        }else{
+        } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Anda tidak memiliki akses</div>');
             redirect('auth');
         }
     }
 
-    public function pMaintenance(){
+    public function pMaintenance()
+    {
         $data['title'] = "Maintenance";
         $data['data'] = $this->Maintenance_model->select('maintenance');
         $data['role_id'] = $this->role_id;
@@ -71,7 +73,8 @@ class Staff extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function pTransportasi(){
+    public function pTransportasi()
+    {
         $data['title'] = "Transportasi";
         $data['data'] = $this->Maintenance_model->select('transportasi');
         $data['role_id'] = $this->role_id;
@@ -115,7 +118,7 @@ class Staff extends CI_Controller
         $this->form_validation->set_rules('akhir', 'Akhir', 'required', array(
             'required' => 'Akhir harus diisi !'
         ));
-        
+
         $mulai = $this->input->post('mulai', true);
         $akhir = $this->input->post('akhir', true);
         $tes = $this->input->post('tes');
@@ -144,7 +147,7 @@ class Staff extends CI_Controller
         $data['title'] = "Transportasi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        
+
         // Set Rules
         $this->form_validation->set_rules('mulai', 'Mulai', 'required', array(
             'required' => 'Mulai harus diisi !'
@@ -171,10 +174,10 @@ class Staff extends CI_Controller
             $this->load->view('rekap/transportasi_staff', $data);
             $this->load->view('templates/footer');
         }
-
     }
 
-    public function rEkspedisi(){
+    public function rEkspedisi()
+    {
         $role_id = $this->session->userdata('role_id');
 
         $data['title'] = "Ekspedisi";
@@ -216,6 +219,7 @@ class Staff extends CI_Controller
         $data['title'] = "Tambah Maintenance";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['divisi'] = $this->Divisi_model->getDivisi();
 
 
         // Set Rules
@@ -316,7 +320,7 @@ class Staff extends CI_Controller
         $data['title'] = "Tambah Ekspedisi";
         $data['role_id'] = $this->role_id;
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
-        
+
         // Set Rules
         $this->form_validation->set_rules('nama', 'Nama', 'required', array(
             'required' => 'Nama harus diisi !'
@@ -592,13 +596,13 @@ class Staff extends CI_Controller
             'required' => 'Status harus diubah !'
         ));
 
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $this->session->set_flashdata(
                 'Gagal',
                 'Proses diubah'
             );
             redirect('staff/pMaintenance');
-        }else{
+        } else {
             $this->Maintenance_model->updateStatus($id);
             $this->session->set_flashdata(
                 'berhasil',

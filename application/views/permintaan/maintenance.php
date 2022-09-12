@@ -100,8 +100,8 @@
                                                 <?php
                                                 if ($row['user_id'] == $user['id']) {
                                                 ?>
-                                                    <li><a class="dropdown-item" href="<?= base_url('admin/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                    <li><a class="dropdown-item" href="<?= base_url('staff/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('staff/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>
@@ -110,13 +110,13 @@
                                         } else {
                                         ?>
                                             <ul class="dropdown-menu" aria-labelledby="aksi">
-                                                <li><a class="dropdown-item" href="<?= base_url("admin/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
+                                                <li><a class="dropdown-item" href="<?= base_url("umum/mDetail/") . $row['id'] ?>"><i class="fas fa-fw fa-eye mr-2"></i> Detail</a></li>
                                                 <li><a class="dropdown-item" href="" id="hapus"><i class="fas fa-fw fa-print mr-2"></i> Print</a></li>
                                                 <?php
                                                 if ($row['user_id'] == $user['id']) {
                                                 ?>
-                                                    <li><a class="dropdown-item" href="<?= base_url('admin/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
-                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('admin/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
+                                                    <li><a class="dropdown-item" href="<?= base_url('umum/mEdit/') . $row['id'] ?>"><i class="fas fa-fw fa-edit mr-2"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item tombol-hapus text-danger" href="<?= base_url('umum/mHapus/') . $row['id'] ?>"><i class="fas fa-fw fa-trash mr-2"></i> Hapus</a></li>
                                                 <?php
                                                 }
                                                 ?>
