@@ -137,7 +137,7 @@ class Umum extends CI_Controller
     {
         $data['title'] = "Tambah Transportasi";
         $data['role_id'] = $this->role_id;
-        $data['mobil'] = $this->Maintenance_model->select('mobil');
+        $data['mobil'] = $this->Transportasi_model->selectMobilWhere();
         $data['pemeriksa'] = $this->Maintenance_model->select('pemeriksa');
         $data['divisi'] = $this->Divisi_model->getDivisi();
         $data['user'] = $this->db->get_where('user', ['nip' => $this->session->userdata('nip')])->row_array();
@@ -183,7 +183,9 @@ class Umum extends CI_Controller
             $this->load->view('permintaan/tambah_t', $data);
             $this->load->view('templates/footer');
         } else {
+            $id = $this->input->post('mobil');
             $this->Transportasi_model->tambahTransportasi();
+            $this->Transportasi_model->updateStatusMobil($id);
             $this->session->set_flashdata(
                 'berhasil',
                 'Permintaan ditambahkan'

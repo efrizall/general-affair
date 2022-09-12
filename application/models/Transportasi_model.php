@@ -26,12 +26,11 @@ class Transportasi_model extends CI_Model
 
     public function selectTransportasiId($id)
     {
-        $this->db->select('*');
-        $this->db->from('transportasi');
-        $this->db->join('mobil', "transportasi.mobil_id = mobil.id AND transportasi.id = $id");
+        return $this->db->query("SELECT transportasi.id, transportasi.nama, transportasi.divisi, transportasi.tujuan, transportasi.keperluan, transportasi.tgl_pakai, transportasi.tgl_kembali, transportasi.jam_pakai, transportasi.jam_kembali, transportasi.pemeriksa, transportasi.ttd_avp, transportasi.ttd_pemeriksa, transportasi.status, transportasi.tanggal, transportasi.file, transportasi.user_id, mobil.jenis, mobil.nopol, mobil.status FROM `transportasi` JOIN mobil ON transportasi.mobil_id = mobil.id AND transportasi.id = $id")->row_array();
+        // $this->db->select('*');
+        // $this->db->from('transportasi');
+        // $this->db->join('mobil', "transportasi.mobil_id = mobil.id AND transportasi.id = $id");
         // $this->db->where('id', $id);
-        $query = $this->db->get()->row_array();
-        return $query;
     }
 
     public function selectTransportasiWhere($mulai, $akhir)
