@@ -133,13 +133,13 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance_staff', $data);
+            $this->load->view('rekap/maintenance_admin', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('rekap/maintenance_staff', $data);
+            $this->load->view('rekap/maintenance_admin', $data);
             $this->load->view('templates/footer');
         }
     }
